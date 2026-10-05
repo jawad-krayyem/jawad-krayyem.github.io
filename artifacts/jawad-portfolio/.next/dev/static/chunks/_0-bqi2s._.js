@@ -262,14 +262,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const commandMap = {
-    help: 'Available commands:\n  help                 Show this guide\n  ls [path]            List the project workspace\n  pwd                  Print the current directory\n  whoami               Show the current user\n  projects             List public project repositories\n  cat about.txt        Read a short introduction\n  pokemon              Open the 2D Pokémon field adventure\n  trex                 Open the Chrome T-Rex runner\n  date                 Show the local date\n  clear                Clear this terminal\n\nThis is a safe simulation. Arbitrary shell commands are not executed.',
+    help: 'Available commands:\n  help                 Show this guide\n  ls [path]            List the project workspace\n  pwd                  Print the current directory\n  whoami               Show the current user\n  projects             List public project repositories\n  cat about.txt        Read a short introduction\n  pacman               Open the Pac-Man-style maze chase\n  trex                 Open the Chrome T-Rex runner\n  date                 Show the local date\n  clear                Clear this terminal\n\nThis is a safe simulation. Arbitrary shell commands are not executed.',
     ls: 'ai-interview/   SDXL/   insightpilot-RAG/   RAG/   about.txt',
     'ls ./projects': 'ai-interview/   SDXL/   insightpilot-RAG/   RAG/',
     pwd: '/home/jawad',
     whoami: 'jawad',
     projects: 'ai-interview — AI interview project\nSDXL — local image generation tooling\ninsightpilot-RAG — local document-grounded RAG\nRAG — full-stack retrieval-augmented generation prototype',
     'cat about.txt': 'Software developer. Interested in useful tools, local AI, and turning experiments into working software.',
-    pokemon: 'Pokémon field adventure selected. Move with the arrow keys or on-screen controls, then throw a Poké Ball when you meet Sproutling.',
+    pacman: 'Pac-Man-style maze chase selected. Eat all the dots, use power pellets, and avoid the ghosts. Use the arrow keys or WASD.',
+    maze: 'Pac-Man-style maze chase selected. Eat all the dots, use power pellets, and avoid the ghosts. Use the arrow keys or WASD.',
     trex: 'Chrome T-Rex runner selected. Start a run, then press Space or Up to jump. Touch players can use the Jump button.',
     date: ()=>new Date().toString()
 };
@@ -285,24 +286,7 @@ function TerminalPage() {
     const [history, setHistory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [historyIndex, setHistoryIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(-1);
     const inputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const [game, setGame] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('adventure');
-    const [position, setPosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        x: 15,
-        y: 57
-    });
-    const [encountered, setEncountered] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [caught, setCaught] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [message, setMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [runnerState, setRunnerState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('ready');
-    const [score, setScore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
-    const canvasRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const runnerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({
-        y: 0,
-        velocity: 0,
-        obstacle: 0,
-        score: 0,
-        playing: false
-    });
+    const [game, setGame] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('maze');
     function submitCommand(event) {
         event.preventDefault();
         const command = input.trim().replace(/\s+/g, ' ');
@@ -312,8 +296,8 @@ function TerminalPage() {
             setInput('');
             return;
         }
-        if (command === 'pokemon' || command === 'trex') {
-            setGame(command === 'pokemon' ? 'adventure' : 'runner');
+        if (command === 'pacman' || command === 'maze' || command === 'trex') {
+            setGame(command === 'trex' ? 'runner' : 'maze');
             requestAnimationFrame(()=>document.getElementById('browser-games')?.scrollIntoView({
                     behavior: 'smooth'
                 }));
@@ -333,7 +317,7 @@ function TerminalPage() {
         setHistoryIndex(-1);
         setInput('');
     }
-    const catchPokemon = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+    const catchPokemon = useCallback({
         "TerminalPage.useCallback[catchPokemon]": ()=>{
             if (!encountered || caught) return;
             setCaught(true);
@@ -356,7 +340,7 @@ function TerminalPage() {
             setInput(history[next] ?? '');
         }
     }
-    const movePlayer = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+    const movePlayer = useCallback({
         "TerminalPage.useCallback[movePlayer]": (direction)=>{
             setPosition({
                 "TerminalPage.useCallback[movePlayer]": (current)=>{
@@ -377,7 +361,7 @@ function TerminalPage() {
         encountered,
         caught
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+    useEffect({
         "TerminalPage.useEffect": ()=>{
             if (game !== 'adventure') return;
             const keyHandler = {
@@ -415,7 +399,7 @@ function TerminalPage() {
         caught,
         catchPokemon
     ]);
-    const startRunner = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+    const startRunner = useCallback({
         "TerminalPage.useCallback[startRunner]": ()=>{
             runnerRef.current = {
                 y: 0,
@@ -428,7 +412,7 @@ function TerminalPage() {
             setRunnerState('playing');
         }
     }["TerminalPage.useCallback[startRunner]"], []);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+    useEffect({
         "TerminalPage.useEffect": ()=>{
             if (game !== 'runner') return;
             const canvas = canvasRef.current;
@@ -504,7 +488,7 @@ function TerminalPage() {
         game,
         runnerState
     ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+    useEffect({
         "TerminalPage.useEffect": ()=>{
             if (game !== 'runner' || runnerState !== 'playing') return;
             const jump = {
@@ -532,7 +516,7 @@ function TerminalPage() {
                 active: "terminal"
             }, void 0, false, {
                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                lineNumber: 166,
+                lineNumber: 160,
                 columnNumber: 38
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -546,7 +530,7 @@ function TerminalPage() {
                                 children: "Interactive workspace / 02"
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 167,
+                                lineNumber: 161,
                                 columnNumber: 33
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -554,27 +538,27 @@ function TerminalPage() {
                                     "The terminal",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 161,
                                         columnNumber: 106
                                     }, this),
                                     "is yours."
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 167,
+                                lineNumber: 161,
                                 columnNumber: 90
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 children: "A browser-native playground. Safe commands up top; two tiny games down below. Nothing here touches a real shell."
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 167,
+                                lineNumber: 161,
                                 columnNumber: 126
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                        lineNumber: 167,
+                        lineNumber: 161,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -590,20 +574,20 @@ function TerminalPage() {
                                             children: "jawad@workspace: ~"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 164,
                                             columnNumber: 37
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                             children: "bash — simulated / read-only"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 164,
                                             columnNumber: 68
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                    lineNumber: 170,
+                                    lineNumber: 164,
                                     columnNumber: 9
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -624,14 +608,14 @@ function TerminalPage() {
                                                             children: "help"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 173,
+                                                            lineNumber: 167,
                                                             columnNumber: 72
                                                         }, this),
                                                         " to see available commands."
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 173,
+                                                    lineNumber: 167,
                                                     columnNumber: 13
                                                 }, this),
                                                 entries.map((entry, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -645,7 +629,7 @@ function TerminalPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                                lineNumber: 174,
+                                                                lineNumber: 168,
                                                                 columnNumber: 108
                                                             }, this),
                                                             '\n',
@@ -653,7 +637,7 @@ function TerminalPage() {
                                                         ]
                                                     }, `${entry.command}-${index}`, true, {
                                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                        lineNumber: 174,
+                                                        lineNumber: 168,
                                                         columnNumber: 44
                                                     }, this)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -666,7 +650,7 @@ function TerminalPage() {
                                                             children: "jawad@workspace:~$"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 175,
+                                                            lineNumber: 169,
                                                             columnNumber: 75
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -681,19 +665,19 @@ function TerminalPage() {
                                                             "aria-label": "Enter a safe terminal command"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 175,
+                                                            lineNumber: 169,
                                                             columnNumber: 154
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 175,
+                                                    lineNumber: 169,
                                                     columnNumber: 13
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 172,
+                                            lineNumber: 166,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -703,7 +687,7 @@ function TerminalPage() {
                                                     children: "Command index"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 44
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -711,7 +695,7 @@ function TerminalPage() {
                                                     children: "help"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 66
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -719,7 +703,7 @@ function TerminalPage() {
                                                     children: "ls"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 108
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -727,7 +711,7 @@ function TerminalPage() {
                                                     children: "pwd"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 148
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -735,7 +719,7 @@ function TerminalPage() {
                                                     children: "whoami"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 189
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -743,7 +727,7 @@ function TerminalPage() {
                                                     children: "projects"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 233
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -751,7 +735,7 @@ function TerminalPage() {
                                                     children: "pokemon"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 279
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -759,7 +743,7 @@ function TerminalPage() {
                                                     children: "trex"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 324
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -767,7 +751,7 @@ function TerminalPage() {
                                                     children: "cat about.txt"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 366
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -775,7 +759,7 @@ function TerminalPage() {
                                                     children: "date"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 417
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -783,36 +767,36 @@ function TerminalPage() {
                                                     children: "clear"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 459
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 171,
                                                     columnNumber: 502
                                                 }, this),
                                                 "Commands are simulated. No arbitrary execution."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 177,
+                                            lineNumber: 171,
                                             columnNumber: 11
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                    lineNumber: 171,
+                                    lineNumber: 165,
                                     columnNumber: 9
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                            lineNumber: 169,
+                            lineNumber: 163,
                             columnNumber: 7
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                        lineNumber: 168,
+                        lineNumber: 162,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -830,33 +814,33 @@ function TerminalPage() {
                                                 children: "After-hours experiments"
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 176,
                                                 columnNumber: 41
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
                                                 children: "Pick a little world."
                                             }, void 0, false, {
                                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 176,
                                                 columnNumber: 95
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                        lineNumber: 182,
+                                        lineNumber: 176,
                                         columnNumber: 36
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         children: "Keyboard or touch. No downloads, no scoreboards."
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                        lineNumber: 182,
+                                        lineNumber: 176,
                                         columnNumber: 130
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 182,
+                                lineNumber: 176,
                                 columnNumber: 7
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -872,7 +856,7 @@ function TerminalPage() {
                                         children: "2D Pokémon adventure"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                        lineNumber: 184,
+                                        lineNumber: 178,
                                         columnNumber: 9
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -883,13 +867,13 @@ function TerminalPage() {
                                         children: "Chrome T-Rex runner"
                                     }, void 0, false, {
                                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                        lineNumber: 185,
+                                        lineNumber: 179,
                                         columnNumber: 9
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 183,
+                                lineNumber: 177,
                                 columnNumber: 7
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -906,7 +890,7 @@ function TerminalPage() {
                                                     children: "MEADOW ROUTE   /   POKÉMON FIELD QUEST"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 184,
                                                     columnNumber: 13
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -918,14 +902,14 @@ function TerminalPage() {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 190,
+                                                    lineNumber: 184,
                                                     columnNumber: 96
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "grass-patch"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 191,
+                                                    lineNumber: 185,
                                                     columnNumber: 13
                                                 }, this),
                                                 !caught && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -935,7 +919,7 @@ function TerminalPage() {
                                                             children: "WILD · SPROUTLING"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 192,
+                                                            lineNumber: 186,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -944,13 +928,13 @@ function TerminalPage() {
                                                             "aria-label": "Wild Pokémon, Sproutling"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 192,
+                                                            lineNumber: 186,
                                                             columnNumber: 80
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 186,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -965,20 +949,20 @@ function TerminalPage() {
                                                             className: "player-head"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 193,
+                                                            lineNumber: 187,
                                                             columnNumber: 128
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "player-body"
                                                         }, void 0, false, {
                                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                            lineNumber: 193,
+                                                            lineNumber: 187,
                                                             columnNumber: 159
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 193,
+                                                    lineNumber: 187,
                                                     columnNumber: 13
                                                 }, this),
                                                 message && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -988,7 +972,7 @@ function TerminalPage() {
                                                     children: message
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 194,
+                                                    lineNumber: 188,
                                                     columnNumber: 25
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -996,13 +980,13 @@ function TerminalPage() {
                                                     children: "MOVE WITH ARROWS · THROW A POKÉ BALL TO CATCH"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 195,
+                                                    lineNumber: 189,
                                                     columnNumber: 13
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 189,
+                                            lineNumber: 183,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1017,7 +1001,7 @@ function TerminalPage() {
                                                     children: "←"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 192,
                                                     columnNumber: 13
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1028,7 +1012,7 @@ function TerminalPage() {
                                                     children: "↑"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 192,
                                                     columnNumber: 128
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1039,7 +1023,7 @@ function TerminalPage() {
                                                     children: "↓"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 192,
                                                     columnNumber: 239
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1050,13 +1034,13 @@ function TerminalPage() {
                                                     children: "→"
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 192,
                                                     columnNumber: 354
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 191,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1067,13 +1051,13 @@ function TerminalPage() {
                                             children: caught ? 'Pokémon caught' : encountered ? 'Throw Poké Ball' : 'Approach Pokémon'
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 200,
+                                            lineNumber: 194,
                                             columnNumber: 11
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                    lineNumber: 188,
+                                    lineNumber: 182,
                                     columnNumber: 33
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "game-board-inner",
@@ -1086,7 +1070,7 @@ function TerminalPage() {
                                             "aria-label": `Chrome T-Rex runner 2D game, score ${score}`
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 202,
+                                            lineNumber: 196,
                                             columnNumber: 11
                                         }, this),
                                         runnerState !== 'playing' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1096,14 +1080,14 @@ function TerminalPage() {
                                                     children: runnerState === 'ready' ? 'Chrome T-Rex run.' : 'Run complete.'
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 197,
                                                     columnNumber: 71
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: runnerState === 'ready' ? 'SPACE / UP or tap Jump to clear the cacti.' : `Score ${score} · take another lap?`
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 197,
                                                     columnNumber: 145
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1112,13 +1096,13 @@ function TerminalPage() {
                                                     children: runnerState === 'ready' ? 'Start T-Rex run' : 'Run again'
                                                 }, void 0, false, {
                                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 197,
                                                     columnNumber: 263
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 203,
+                                            lineNumber: 197,
                                             columnNumber: 41
                                         }, this),
                                         runnerState === 'playing' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1130,45 +1114,45 @@ function TerminalPage() {
                                             children: "Jump"
                                         }, void 0, false, {
                                             fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                            lineNumber: 204,
+                                            lineNumber: 198,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                    lineNumber: 201,
+                                    lineNumber: 195,
                                     columnNumber: 18
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                                lineNumber: 187,
+                                lineNumber: 181,
                                 columnNumber: 7
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                        lineNumber: 181,
+                        lineNumber: 175,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                lineNumber: 166,
+                lineNumber: 160,
                 columnNumber: 70
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$3$2e$8_$40$types$2b$node$40$25$2e$9$2e$6_react$2d$dom$40$19$2e$1$2e$0_react$40$19$2e$1$2e$0_$5f$react$40$19$2e$1$2e$0$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$artifacts$2f$jawad$2d$portfolio$2f$app$2f$components$2f$SiteChrome$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SiteFooter"], {}, void 0, false, {
                 fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-                lineNumber: 208,
+                lineNumber: 202,
                 columnNumber: 10
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/artifacts/jawad-portfolio/app/terminal/page.tsx",
-        lineNumber: 166,
+        lineNumber: 160,
         columnNumber: 10
     }, this);
 }
-_s(TerminalPage, "7zdUFbLM5CJQ4ED7laRSI4/iDP4=");
+_s(TerminalPage, "B5jXqmRBLloYOb6F57ovcXS7fI0=");
 _c = TerminalPage;
 var _c;
 __turbopack_context__.k.register(_c, "TerminalPage");

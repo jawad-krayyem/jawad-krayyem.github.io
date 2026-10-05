@@ -119,32 +119,13 @@ a { text-decoration: none; }
 .games-title { display:flex; align-items:end; justify-content:space-between; gap:24px; border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:25px; }
 .games-title h2 { margin:0; font-size:clamp(35px,5vw,60px); letter-spacing:-.07em; font-weight:500; }
 .games-title p { color:var(--muted); font-size:12px; margin:0; }
-.game-switcher { display:flex; flex-wrap:wrap; gap:7px; margin:20px 0; }
-.game-tab { border:1px solid var(--line); background:transparent; padding:10px 14px; cursor:pointer; font:10px var(--mono); text-transform:uppercase; }
-.game-tab[aria-pressed="true"] { background:var(--green); color:var(--paper); border-color:var(--green); }
 .game-board { background:#dfe7be; border:1px solid var(--line); min-height:355px; position:relative; overflow:hidden; color:#243b2d; }
 .game-board-inner { min-height:355px; position:relative; display:grid; place-items:center; }
-.pokemon-scene { position:absolute; inset:0; background-color:#dfe7be; background-image:linear-gradient(rgba(49,87,55,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(49,87,55,.07) 1px,transparent 1px); background-size:32px 32px; overflow:hidden; }
-.grass-patch { position:absolute; width:180px;height:84px; right:8%;bottom:12%; border-radius:50%;background:#93b181; box-shadow:inset 0 0 0 8px rgba(65,119,75,.14); }
-.game-player { position:absolute; width:24px;height:32px; transition:transform .12s; z-index:2; }
-.player-head { width:18px;height:18px;background:#e28b61;border:2px solid #324935; border-radius:6px 6px 3px 3px; margin:auto; }
-.player-body { width:20px;height:14px;background:#486d87;border:2px solid #324935;border-radius:3px;margin:-1px auto 0; }
-.poke-creature { position:absolute; right:25%;top:38%; width:46px;height:38px;background:#8eaf65; border:3px solid #324935; border-radius:45% 50% 40% 40%; animation:bob 1.5s ease-in-out infinite; }
-.poke-creature:before,.poke-creature:after { content:""; position:absolute; top:10px; width:4px;height:5px;background:#263729;border-radius:50%; }
-.poke-creature:before{left:9px}.poke-creature:after{right:9px}
-.scene-label { position:absolute; left:18px; top:16px; font:10px var(--mono); color:#496a4e; }
-.game-hud { position:absolute; right:16px;top:13px; background:#eff3d8;border:1px solid #718d66;padding:7px 11px;font:10px var(--mono);z-index:3; }
-.game-controls { position:absolute; left:18px;bottom:15px;font:9px var(--mono);color:#496a4e; }
-.pokemon-name { position:absolute; right:calc(25% - 45px); top:calc(38% - 24px); z-index:2; padding:4px 7px; background:#eff3d8; border:1px solid #718d66; color:#395b42; font:8px var(--mono); letter-spacing:.06em; }
-.game-message { position:absolute; left:50%; top:54px; transform:translateX(-50%); max-width:calc(100% - 32px); background:#f0f2df; border:1px solid #718d66; padding:9px 14px; font:10px/1.5 var(--mono); text-align:center; z-index:4; }
-.capture-button { position:absolute; right:14px; bottom:12px; z-index:6; border:1px solid #395b42; background:#395b42; color:#f3f5de; padding:10px 12px; font:9px var(--mono); cursor:pointer; }
-.capture-button:disabled { opacity:.72; cursor:default; }
 .trex-canvas { width:100%; min-height:355px; display:block; background:linear-gradient(#e4eccd 0 72%,#aec58e 72%); }
 .game-overlay { position:absolute; inset:0; display:grid; place-content:center; text-align:center; background:rgba(223,231,190,.84); z-index:5; }
 .game-overlay h3 { margin:0 0 5px; font-size:24px; letter-spacing:-.05em; }
 .game-overlay p { margin:0 0 15px; font:10px var(--mono); }
-.game-overlay button,.small-button { border:1px solid #395b42; background:#395b42; color:#f3f5de; padding:10px 14px; font:10px var(--mono); cursor:pointer; }
-.touch-controls { display:none; }
+.game-overlay button { border:1px solid #395b42; background:#395b42; color:#f3f5de; padding:10px 14px; font:10px var(--mono); cursor:pointer; }
 .jump-button { position:absolute; z-index:6; right:15px; bottom:15px; border:1px solid #395b42; background:#395b42; color:#f3f5de; padding:12px 20px; font:10px var(--mono); cursor:pointer; }
 .privacy-wrap { max-width:1000px; margin:auto; padding:30px 24px 100px; }
 .policy-paper { border:1px solid var(--line); background:var(--paper-deep); padding:clamp(24px,6vw,72px); }
@@ -177,9 +158,6 @@ a { text-decoration: none; }
   .terminal-output { max-height:380px; padding:18px 15px; }
   .games-title { align-items:start; flex-direction:column; }
   .game-board,.game-board-inner,.trex-canvas { min-height:300px; }
-  .game-controls { max-width:calc(100% - 190px); bottom:17px; font-size:8px; line-height:1.6; }
-  .touch-controls { display:flex; position:absolute; z-index:5; right:12px; bottom:58px; gap:5px; }
-  .capture-button { right:12px; bottom:10px; }
   .footer { flex-direction:column; gap:15px; }
 }
 @media(max-width:420px) {

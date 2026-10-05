@@ -722,28 +722,6 @@ a {
   font-size: 12px;
 }
 
-.game-switcher {
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 20px 0;
-  display: flex;
-}
-
-.game-tab {
-  border: 1px solid var(--line);
-  cursor: pointer;
-  font: 10px var(--mono);
-  text-transform: uppercase;
-  background: none;
-  padding: 10px 14px;
-}
-
-.game-tab[aria-pressed="true"] {
-  background: var(--green);
-  color: var(--paper);
-  border-color: var(--green);
-}
-
 .game-board {
   border: 1px solid var(--line);
   color: #243b2d;
@@ -758,154 +736,6 @@ a {
   min-height: 355px;
   display: grid;
   position: relative;
-}
-
-.pokemon-scene {
-  background-color: #dfe7be;
-  background-image: linear-gradient(#31573712 1px, #0000 1px), linear-gradient(90deg, #31573712 1px, #0000 1px);
-  background-size: 32px 32px;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.grass-patch {
-  background: #93b181;
-  border-radius: 50%;
-  width: 180px;
-  height: 84px;
-  position: absolute;
-  bottom: 12%;
-  right: 8%;
-  box-shadow: inset 0 0 0 8px #41774b24;
-}
-
-.game-player {
-  z-index: 2;
-  width: 24px;
-  height: 32px;
-  transition: transform .12s;
-  position: absolute;
-}
-
-.player-head {
-  background: #e28b61;
-  border: 2px solid #324935;
-  border-radius: 6px 6px 3px 3px;
-  width: 18px;
-  height: 18px;
-  margin: auto;
-}
-
-.player-body {
-  background: #486d87;
-  border: 2px solid #324935;
-  border-radius: 3px;
-  width: 20px;
-  height: 14px;
-  margin: -1px auto 0;
-}
-
-.poke-creature {
-  background: #8eaf65;
-  border: 3px solid #324935;
-  border-radius: 45% 50% 40% 40%;
-  width: 46px;
-  height: 38px;
-  animation: 1.5s ease-in-out infinite bob;
-  position: absolute;
-  top: 38%;
-  right: 25%;
-}
-
-.poke-creature:before, .poke-creature:after {
-  content: "";
-  background: #263729;
-  border-radius: 50%;
-  width: 4px;
-  height: 5px;
-  position: absolute;
-  top: 10px;
-}
-
-.poke-creature:before {
-  left: 9px;
-}
-
-.poke-creature:after {
-  right: 9px;
-}
-
-.scene-label {
-  font: 10px var(--mono);
-  color: #496a4e;
-  position: absolute;
-  top: 16px;
-  left: 18px;
-}
-
-.game-hud {
-  font: 10px var(--mono);
-  z-index: 3;
-  background: #eff3d8;
-  border: 1px solid #718d66;
-  padding: 7px 11px;
-  position: absolute;
-  top: 13px;
-  right: 16px;
-}
-
-.game-controls {
-  font: 9px var(--mono);
-  color: #496a4e;
-  position: absolute;
-  bottom: 15px;
-  left: 18px;
-}
-
-.pokemon-name {
-  z-index: 2;
-  color: #395b42;
-  font: 8px var(--mono);
-  letter-spacing: .06em;
-  background: #eff3d8;
-  border: 1px solid #718d66;
-  padding: 4px 7px;
-  position: absolute;
-  top: calc(38% - 24px);
-  right: calc(25% - 45px);
-}
-
-.game-message {
-  max-width: calc(100% - 32px);
-  font: 10px/1.5 var(--mono);
-  text-align: center;
-  z-index: 4;
-  background: #f0f2df;
-  border: 1px solid #718d66;
-  padding: 9px 14px;
-  position: absolute;
-  top: 54px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.capture-button {
-  z-index: 6;
-  color: #f3f5de;
-  font: 9px var(--mono);
-  cursor: pointer;
-  background: #395b42;
-  border: 1px solid #395b42;
-  padding: 10px 12px;
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-}
-
-.capture-button:disabled {
-  opacity: .72;
-  cursor: default;
 }
 
 .trex-canvas {
@@ -936,17 +766,13 @@ a {
   margin: 0 0 15px;
 }
 
-.game-overlay button, .small-button {
+.game-overlay button {
   color: #f3f5de;
   font: 10px var(--mono);
   cursor: pointer;
   background: #395b42;
   border: 1px solid #395b42;
   padding: 10px 14px;
-}
-
-.touch-controls {
-  display: none;
 }
 
 .jump-button {
@@ -1138,27 +964,6 @@ a {
 
   .game-board, .game-board-inner, .trex-canvas {
     min-height: 300px;
-  }
-
-  .game-controls {
-    max-width: calc(100% - 190px);
-    font-size: 8px;
-    line-height: 1.6;
-    bottom: 17px;
-  }
-
-  .touch-controls {
-    z-index: 5;
-    gap: 5px;
-    display: flex;
-    position: absolute;
-    bottom: 58px;
-    right: 12px;
-  }
-
-  .capture-button {
-    bottom: 10px;
-    right: 12px;
   }
 
   .footer {
