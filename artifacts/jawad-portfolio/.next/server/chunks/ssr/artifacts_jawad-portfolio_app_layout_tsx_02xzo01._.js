@@ -1,3 +1,0 @@
-module.exports=[42425,a=>{"use strict";var b=a.i(99747);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"en","data-scroll-behavior":"smooth",children:(0,b.jsx)("body",{children:a})})},"metadata",0,{title:"Jawad Krayyem — Software Developer & Builder",description:"Selected software projects and browser experiments by Jawad Krayyem.",icons:{icon:"/favicon.svg"},openGraph:{title:"Jawad Krayyem — Software Developer & Builder",description:"Selected software projects and browser experiments."}}])},68776,function(a){a.n(a.i(42425))}];
-
-//# sourceMappingURL=artifacts_jawad-portfolio_app_layout_tsx_02xzo01._.js.map
