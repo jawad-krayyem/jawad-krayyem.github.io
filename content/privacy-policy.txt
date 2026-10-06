@@ -7,9 +7,21 @@ This Privacy Policy explains how FRACTURE handles information when you use the A
 FRACTURE is intended for users aged 13 and older and is not directed to children under 13.
 
 
-1. Information FRACTURE may process
+1. Who is responsible for FRACTURE
 
-FRACTURE may process or store information needed to operate the game, remember settings, manage privacy choices, and determine whether optional advertising may be used.
+FRACTURE is developed and published by Jawad Krayyem.
+
+For privacy questions, requests, or concerns, contact:
+
+Email: krayyemjawad@gmail.com
+
+Website:
+https://jawad-krayyem.github.io/
+
+
+2. Information FRACTURE may process
+
+FRACTURE may process or store information needed to operate the game, remember settings, maintain security, manage privacy choices, and determine whether optional advertising may be used.
 
 This may include:
 
@@ -18,13 +30,51 @@ This may include:
 - privacy and consent choices;
 - applicable privacy or regional state;
 - advertising-provider permissions;
-- technical information needed to operate, secure, diagnose, and improve the game;
-- advertising-related information where advertising is permitted by the user's privacy choices and applicable rules.
+- local privacy authorization information;
+- technical information required to operate, secure, diagnose, and maintain the game;
+- advertising-related information where advertising is permitted by the user's privacy choices and applicable requirements.
 
 FRACTURE stores the selected age range rather than a date of birth.
 
 
-2. Advertising and age
+3. Legal bases for processing
+
+Where the GDPR or another law requiring a legal basis applies, the legal basis depends on the purpose for which information is processed.
+
+FRACTURE may rely on the following bases where applicable:
+
+Consent
+
+Consent is used where required for personalized advertising, advertising-provider permissions, or other processing that requires the user's permission.
+
+A refusal or withdrawal of consent does not become permission merely because the consent manager has loaded.
+
+Performance of the requested service
+
+Certain local information, such as gameplay settings and information required to provide requested game functionality, may be processed because it is necessary to provide and operate the game requested by the user.
+
+Legitimate interests
+
+Where permitted by applicable law, FRACTURE may rely on legitimate interests for limited technical and operational purposes such as:
+
+- maintaining application security and integrity;
+- preventing or detecting fraud or misuse;
+- diagnosing errors;
+- protecting the reliability of privacy and consent state;
+- maintaining records needed to avoid initializing advertising when authorization is invalid or unresolved.
+
+These interests are not intended to override applicable privacy rights.
+
+Legal obligations
+
+Information may be processed or retained where necessary to comply with applicable legal or regulatory obligations, including obligations relating to privacy choices and user rights.
+
+Third-party providers may determine their own legal bases for processing for which they independently act as a controller or otherwise determine the purposes and means of processing.
+
+FRACTURE does not treat refusal of advertising consent as permission to fall back automatically to personalized advertising under another legal basis.
+
+
+4. Advertising and age
 
 Optional advertising is currently restricted to users treated by FRACTURE's privacy controls as adults aged 18 or older.
 
@@ -33,51 +83,78 @@ Advertising remains disabled for:
 - users under 18;
 - users whose age range is unresolved;
 - users whose privacy or consent state is unresolved;
-- users whose applicable privacy state does not permit advertising.
+- users whose applicable privacy state does not permit advertising;
+- users whose advertising authorization is missing, expired, invalid, or withdrawn.
 
-Refusing advertising consent does not prevent normal gameplay, although optional features that depend on advertising, such as an ad-supported reward, may be unavailable.
+Refusing advertising consent does not prevent normal gameplay.
+
+However, an optional feature that specifically depends on an advertisement, such as an ad-supported reward, may be unavailable when advertising is not authorized.
 
 
-3. Consent management
+5. Consent management
 
 FRACTURE uses InMobi Choice as its consent-management platform.
 
-The consent manager may be used to present privacy information and collect or store applicable privacy choices.
+The consent manager may present privacy information and collect, store, or communicate applicable privacy choices.
 
 Loading or displaying the consent manager does not itself constitute advertising consent.
 
 Advertising is not authorized merely because the consent manager loaded successfully.
 
-Where applicable, FRACTURE uses privacy signals associated with its advertising providers before allowing advertising initialization.
+Where applicable, FRACTURE evaluates applicable privacy signals and provider permissions before allowing advertising initialization.
 
 
-4. Advertising providers
+6. Advertising providers
 
-FRACTURE currently integrates advertising technology associated with:
+FRACTURE currently integrates advertising technology associated with Unity technologies, including Unity Ads, Unity LevelPlay, and ironSource.
 
-Unity Ads / Unity Technologies
+FRACTURE currently uses privacy signals associated with:
 
-ironSource / Unity LevelPlay
+- Unity Technologies / Unity Ads;
+- ironSource / Unity LevelPlay.
 
-Privacy choices for these providers may be handled through applicable consent frameworks and provider-specific privacy signals.
+Where applicable, Unity advertising authorization is evaluated using relevant consent-framework signals, and ironSource authorization is evaluated using the applicable provider consent signal.
 
-Each provider may process information according to its own privacy policy, legal obligations, and retention practices.
-
-FRACTURE does not claim that every advertising provider uses the same retention period or stops all previously performed processing when consent is withdrawn.
+Provider disclosure or presence in a consent-manager configuration does not by itself mean that the user granted consent.
 
 
-5. United States privacy handling
+7. Third-party privacy policies
 
-Advertising is currently disabled for users whose privacy state is handled under the United States regulatory path.
+FRACTURE relies on third-party services for consent management and advertising functionality.
+
+These providers maintain their own privacy practices and policies.
+
+InMobi / InMobi Choice privacy information:
+
+https://advertising.inmobi.com/privacy-policy
+
+Unity Game Player and App User Privacy Policy:
+
+https://unity.com/legal/game-player-and-app-user-privacy-policy
+
+Unity Privacy and Legal Center:
+
+https://unity.com/legal
+
+These third parties may process information according to their own privacy policies, legal obligations, contractual roles, and applicable laws.
+
+FRACTURE does not claim that every provider uses the same retention period or that withdrawal automatically erases information previously processed by those providers.
+
+
+8. United States privacy handling
+
+Advertising is currently disabled for users whose privacy state is handled under FRACTURE's United States regulatory path.
 
 United States privacy choices may still be available even while advertising is disabled.
 
 Unknown or unresolved regional or privacy states do not permit advertising initialization.
 
-Privacy controls and the consent manager may therefore remain available independently of whether advertisements are currently delivered.
+Privacy controls and the consent manager may therefore remain available independently of whether advertisements are delivered.
+
+Where applicable, users may be provided with privacy choices relating to matters such as sale, sharing, targeted advertising, or other rights provided by applicable United States privacy laws.
 
 
-6. Local privacy authorization record
+9. Local privacy authorization record
 
 In addition to gameplay settings, FRACTURE stores the selected age range and a local privacy authorization record on the device.
 
@@ -87,15 +164,19 @@ The record may include:
 
 - the applicable privacy or regional state;
 - advertising-provider permissions;
+- consent-state information;
 - the privacy-policy or notice revision;
 - the consent-manager configuration;
-- the time associated with the relevant privacy choice;
-- technical hashes used to detect whether the underlying consent state or configuration has changed.
+- applicable provider or vendor identifiers;
+- the time associated with the relevant visible privacy choice;
+- technical hashes used to detect whether the underlying privacy state or configuration has changed.
 
-This record is not a player account and is not intended to establish or verify a person's identity.
+These hashes are used for state-integrity and invalidation checks and are not intended to identify the user.
+
+The local privacy authorization record is not a player account and is not intended to establish or verify a person's identity.
 
 
-7. Authorization validity
+10. Advertising authorization validity
 
 An advertising authorization is treated as valid for no more than 30 days.
 
@@ -104,109 +185,154 @@ It may become invalid sooner if information relevant to the authorization change
 - privacy or consent choices;
 - selected age range;
 - applicable regional state;
+- provider permissions;
 - privacy-policy or notice version;
 - consent-manager configuration;
-- provider permissions.
+- applicable policy or consent-framework state.
 
-The 30-day authorization period is an authorization limit. It does not mean that every locally stored privacy record is automatically deleted after 30 days.
+An expired or invalid authorization does not permit FRACTURE to initialize advertising until the required privacy state has been resolved again.
 
+The 30-day authorization period is an authorization limit.
 
-8. Local retention
-
-Local privacy information may remain on the device until it is replaced, reset, revoked, cleared through Android application settings, or removed when the application is uninstalled.
-
-Consent-management and advertising providers may retain information according to their own privacy policies and legal obligations.
+It does not mean that every locally stored privacy record is automatically deleted after 30 days.
 
 
-9. Reviewing or changing privacy choices
+11. Local retention
 
-You can review or change advertising-provider choices from:
+Local privacy information may remain on the device until it is:
+
+- replaced by newer privacy state;
+- reset or revoked;
+- cleared through Android application settings;
+- removed when the application is uninstalled;
+- otherwise invalidated or removed by the application's privacy controls.
+
+Consent-management and advertising providers may maintain their own information according to their privacy policies, legal obligations, and retention practices.
+
+
+12. Reviewing or changing privacy choices
+
+You can review or change applicable advertising-provider privacy choices from:
 
 Settings → Privacy → Review privacy choices
 
 Where applicable, United States privacy choices are available through the corresponding privacy controls.
 
-Changes should be saved through the consent manager.
+Changes to provider choices should be saved through the consent manager.
+
+Loading the consent manager does not itself grant permission.
 
 
-10. Refusal and withdrawal
+13. Refusal and withdrawal
 
-Refusal, withdrawal, missing permissions, or unresolved privacy state do not become advertising consent merely because the consent manager has loaded.
+Refusal, withdrawal, missing permissions, expired authorization, or unresolved privacy state do not become advertising consent merely because the consent manager has loaded.
 
-When FRACTURE's advertising authorization is turned off or becomes invalid, FRACTURE blocks further advertising requests under that authorization.
+When FRACTURE's local advertising authorization is turned off or becomes invalid, FRACTURE blocks further advertising requests under that authorization.
 
-Changing FRACTURE's local advertising authorization does not necessarily rewrite every preference maintained by the consent-management platform.
+Changing FRACTURE's local advertising authorization does not necessarily rewrite every preference maintained by a consent-management or advertising provider.
 
-To change provider-specific consent preferences, use:
+To review or change provider-specific privacy preferences, use:
 
 Settings → Privacy → Review privacy choices
 
-Withdrawal of consent does not affect processing that was lawfully performed before consent was withdrawn.
+Where processing is based on consent, withdrawal of consent does not affect the lawfulness of processing that occurred on the basis of valid consent before withdrawal.
 
-Withdrawal also does not by itself erase information already processed by third parties or necessarily unload software components that were already initialized.
+Withdrawal also does not by itself erase information already processed by third parties or necessarily unload software components that were initialized before withdrawal.
 
-Requests relating to access, deletion, or other applicable privacy rights are separate from changing an advertising-consent preference.
+Where technically applicable, FRACTURE updates relevant provider privacy signals and prevents further advertising requests under an invalid or withdrawn local authorization.
 
-
-11. Security, fraud prevention, and technical operation
-
-Information may be processed as necessary to help operate the game, preserve privacy choices, maintain security, prevent or detect fraud, diagnose errors, and protect the integrity of the application.
-
-FRACTURE does not use the privacy authorization record as proof of identity.
+Requests relating to access, deletion, correction, portability, or other privacy rights are separate from changing an advertising-consent preference.
 
 
-12. Your privacy rights
+14. Security, fraud prevention, and technical operation
+
+FRACTURE may process limited information where necessary and legally permitted to:
+
+- operate the game;
+- preserve privacy choices;
+- maintain application security;
+- prevent or detect fraud or misuse;
+- diagnose technical errors;
+- protect the integrity of privacy state;
+- prevent advertising initialization when authorization is invalid.
+
+FRACTURE does not use its privacy authorization record as proof of identity.
+
+
+15. Your privacy rights
 
 Depending on the laws that apply to you, you may have rights relating to your personal information.
 
 These may include rights to:
 
 - access personal data;
-- request correction of inaccurate data;
+- request correction of inaccurate personal data;
 - request deletion where applicable;
 - restrict certain processing;
 - object to certain processing;
 - withdraw consent where processing relies on consent;
-- receive certain data in a portable format where applicable.
+- receive certain personal data in a portable format where applicable.
 
 Withdrawal of consent does not affect the lawfulness of processing carried out on the basis of valid consent before withdrawal.
 
 Where the GDPR applies, you may also have the right to lodge a complaint with a competent data-protection supervisory authority.
 
-Additional rights may apply depending on your jurisdiction.
+Additional privacy rights may apply depending on your country, state, or other jurisdiction.
+
+To exercise a right relating directly to FRACTURE, contact the developer using the contact information provided in Section 1.
+
+Requests concerning information independently controlled by a third-party provider may also need to be directed to that provider.
 
 
-13. Third-party privacy policies
+16. Children and teenagers
 
-FRACTURE relies on third-party services for consent management and advertising functionality.
+FRACTURE is intended for users aged 13 and older and is not directed to children under 13.
 
-You should also review the applicable privacy information provided by:
+FRACTURE's current advertising policy does not authorize advertising for users under 18.
 
-InMobi Choice
+Advertising also remains disabled when the user's age range cannot be resolved.
 
-Unity Technologies / Unity Ads / LevelPlay
+FRACTURE stores an age range selection rather than a date of birth.
 
-ironSource
-
-Those providers are responsible for their own processing practices where they act independently.
+If you believe information relating to a child under the applicable minimum age has been processed improperly, contact the developer using the contact information in Section 1.
 
 
-14. International processing
+17. International processing
 
 Third-party providers may process information in countries other than the country where you live.
 
-Where applicable, those providers are responsible for using appropriate mechanisms required by applicable data-protection law for their processing activities.
+Where required by applicable law, those providers are responsible for using applicable safeguards or transfer mechanisms for processing for which they are responsible.
+
+For more information about a provider's international processing practices, review that provider's privacy policy.
 
 
-15. Changes to this Privacy Policy
+18. Data deletion and Android controls
 
-This Privacy Policy may be updated when FRACTURE's privacy practices, providers, consent configuration, advertising behavior, or legal requirements change.
+Information stored locally by FRACTURE may generally be removed by clearing the application's data through Android settings or uninstalling the application.
 
-When material changes are made, the updated policy will show a revised "Last updated" date.
+Clearing local FRACTURE data does not necessarily delete information already processed independently by a third-party service.
 
-A change to the privacy notice or consent configuration may also cause FRACTURE to require privacy authorization to be reviewed again before advertising can initialize.
+Requests concerning third-party information should be made according to the applicable provider's privacy policy and rights-request procedures.
 
 
-16. Contact
+19. Changes to this Privacy Policy
 
-For questions, privacy requests, or concerns relating to FRACTURE, please use the developer contact information provided on FRACTURE's Google Play Store listing or the official FRACTURE website.
+This Privacy Policy may be updated when FRACTURE's privacy practices, providers, consent configuration, advertising behavior, or applicable requirements change.
+
+When material changes are made, the policy will display an updated "Last updated" date.
+
+A change to this Privacy Policy, privacy notice, or consent configuration may cause FRACTURE to invalidate an existing advertising authorization and require the privacy state to be reviewed again before advertising can initialize.
+
+
+20. Contact
+
+For privacy questions, concerns, or requests relating to FRACTURE, contact:
+
+Developer:
+Jawad Krayyem
+
+Email:
+krayyemjawad@gmail.com
+
+Website:
+https://jawad-krayyem.github.io/
