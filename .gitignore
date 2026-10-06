@@ -1,49 +1,20 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Next.js static site
+.next/
+out/
+next-env.d.ts
+.vercel/
+.env*
+!.env.example
 
-# compiled output
-dist
-tmp
-out-tsc
+# Generated output and dependencies
+dist/
+node_modules/
 *.tsbuildinfo
-.expo
-.expo-shared
+coverage/
 
-# dependencies
-node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-
-# System Files
+# Local configuration, logs, and system files
+.idea/
+.vscode/
+*.log
 .DS_Store
 Thumbs.db
-
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
-
-# Replit
-.cache/
-.local/

@@ -1,2 +1,0 @@
-- [Workspace package installs](workspace-package-installs.md) — scope dependencies to their workspace package; the installer helper rejects pnpm filter flags.
-- [Next.js preview HMR](nextjs-preview-hmr.md) — the preview WebSocket can fail while pages and static exports still work; treat it as a proxy issue first.
