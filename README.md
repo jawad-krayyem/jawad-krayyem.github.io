@@ -50,3 +50,20 @@ workflow, and committed build output have been removed.
 
 References: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
 and [Next.js static exports](https://nextjs.org/docs/app/guides/static-exports).
+
+## Analytics consent
+
+The custom consent banner uses basic Google Consent Mode v2. The Google Analytics
+script is loaded only after Accept analytics is chosen or a valid accepted choice
+is restored. Reject analytics keeps collection disabled. Advertising storage,
+advertising user data, and ad personalization stay denied even when analytics is accepted.
+
+Choices are remembered for 180 days in browser local storage. Privacy settings in
+the footer reopens the banner. Changes are synchronized between tabs. Rejecting
+after accepting disables measurement and clears accessible analytics cookies.
+The privacy policy page includes a notice about this website's analytics.
+
+After deploying this change, choose **I use a custom consent banner** in Google's
+consent setup. In Tag Assistant, verify that no analytics loader runs before consent,
+Accept analytics grants only analytics storage, and Reject analytics denies it.
+Use a fresh browser session to test the initial state.

@@ -2,17 +2,19 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { PrivacySettingsButton } from './AnalyticsConsent';
 
 export function SiteChrome({ active = '' }: { active?: string }) {
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    const saved = localStorage.getItem('jk-theme');
+    let saved: string | null = null;
+    try { saved = localStorage.getItem('jk-theme'); } catch { /* Use the system theme when storage is unavailable. */ }
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDark(saved ? saved === 'dark' : prefersDark);
   }, []);
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
-    localStorage.setItem('jk-theme', dark ? 'dark' : 'light');
+    try { localStorage.setItem('jk-theme', dark ? 'dark' : 'light'); } catch { /* Theme changes still work for this page. */ }
   }, [dark]);
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
@@ -33,5 +35,5 @@ export function SiteChrome({ active = '' }: { active?: string }) {
 }
 
 export function SiteFooter() {
-  return <footer className="footer"><span>© {new Date().getFullYear()} Jawad Krayyem</span><div className="footer-links"><Link href="/terminal/">Explore the terminal</Link><Link href="/privacy-policy/">Privacy policy</Link><a href="https://github.com/jawad-krayyem" target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>;
+  return <footer className="footer"><span>© {new Date().getFullYear()} Jawad Krayyem</span><div className="footer-links"><Link href="/terminal/">Explore the terminal</Link><Link href="/privacy-policy/">Privacy policy</Link><PrivacySettingsButton /><a href="https://github.com/jawad-krayyem" target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>;
 }

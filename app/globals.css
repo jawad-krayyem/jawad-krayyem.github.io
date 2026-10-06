@@ -98,7 +98,25 @@ a { text-decoration: none; }
 .about-text { color:var(--muted); font-size:16px; line-height:1.8; max-width:650px; }
 .about-text p:first-child { margin-top:0; color:var(--ink); font-size:19px; }
 .footer { max-width:1370px; margin:auto; padding:28px clamp(20px,6vw,92px) 36px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font:10px var(--mono); color:var(--muted); }
-.footer-links { display:flex; gap:22px; }
+.footer-links { display:flex; gap:22px; flex-wrap:wrap; }
+.footer-link-button { padding:0; border:0; background:none; font:inherit; cursor:pointer; }
+.consent-banner { position:fixed; z-index:100; inset:auto 20px 20px; max-width:1120px; margin-inline:auto; padding:24px; display:flex; align-items:center; gap:28px; border:1px solid var(--line); background:var(--paper); color:var(--ink); box-shadow:0 10px 45px rgba(0,0,0,.2); border-radius:8px; max-height:calc(100dvh - 40px); overflow-y:auto; }
+.consent-copy { flex:1; }
+.consent-copy h2 { margin:0 0 8px; font-size:20px; letter-spacing:-.04em; }
+.consent-copy p { margin:0 0 12px; color:var(--muted); font-size:13px; line-height:1.6; }
+.consent-copy a { font:11px var(--mono); text-decoration:underline; text-underline-offset:3px; }
+.consent-actions { display:flex; gap:10px; flex-shrink:0; }
+.consent-actions button { border:1px solid var(--green); background:var(--paper); color:var(--green); border-radius:3px; padding:13px 15px; font:11px var(--mono); cursor:pointer; min-height:44px; }
+.consent-actions button:hover { background:var(--paper-deep); }
+.consent-actions button:focus-visible,.footer-link-button:focus-visible { outline:2px solid var(--green); outline-offset:4px; }
+.analytics-notice { margin-bottom:36px; border:1px solid var(--line); padding:24px; background:var(--paper-deep); scroll-margin-top:24px; }
+.analytics-notice h2 { margin:0 0 12px; font-size:24px; letter-spacing:-.04em; }
+.analytics-notice p { font-size:14px; line-height:1.7; color:var(--muted); }
+.analytics-notice a { text-decoration:underline; text-underline-offset:3px; }
+@media(max-width:760px) {
+  .consent-banner { inset:auto 12px 12px; padding:20px; flex-direction:column; align-items:stretch; gap:18px; max-height:calc(100dvh - 24px); }
+  .consent-actions button { flex:1; padding-inline:8px; }
+}
 .page-intro { max-width:1370px; margin:auto; padding:76px clamp(20px,6vw,92px) 44px; }
 .page-intro h1 { font-size:clamp(48px,8vw,104px); line-height:.9; letter-spacing:-.09em; margin:24px 0 18px; font-weight:500; }
 .page-intro p { color:var(--muted); max-width:600px; line-height:1.65; }
