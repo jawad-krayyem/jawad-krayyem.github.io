@@ -1,43 +1,24 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { SiteChrome, SiteFooter } from './components/SiteChrome';
-
-const projects = [
-  { number: '01', name: 'ai-interview', description: 'An AI interview project, built in the open.', tags: ['AI', 'Open source'], href: 'https://github.com/jawad-krayyem/ai-interview' },
-  { number: '02', name: 'SDXL', description: 'Local SDXL text and image generation with inpainting, ControlNet, and LoRA tooling.', tags: ['Generative AI', 'Local-first'], href: 'https://github.com/jawad-krayyem/SDXL' },
-  { number: '03', name: 'insightpilot-RAG', description: 'A local, document-grounded assistant with hybrid retrieval and reranking.', tags: ['RAG', 'Retrieval'], href: 'https://github.com/jawad-krayyem/insightpilot-RAG' },
-  { number: '04', name: 'RAG', description: 'A full-stack retrieval-augmented generation prototype.', tags: ['Full stack', 'RAG'], href: 'https://github.com/jawad-krayyem/RAG' },
-];
-
+import ProjectGrid from './components/ProjectGrid';
+import ProcessorExplorer from './components/ProcessorExplorer';
+import ContactActions from './components/ContactActions';
+import { Icon } from './components/Icons';
+import { skills, projects } from './lib/projects';
+import { notes } from './lib/notes';
+export const metadata = { alternates: { canonical: '/' } };
 export default function HomePage() {
-  return <div className="site-shell"><SiteChrome active="work" /><main id="main">
-    <section className="hero">
-      <div className="reveal">
-        <div className="eyebrow">Software developer / builder</div>
-        <h1>Jawad<br /><em>Krayyem.</em></h1>
-        <p className="hero-copy">I build software that makes complex ideas feel tangible — from local AI tools to full-stack experiments.</p>
-        <div className="hero-actions"><a className="button-primary" href="#work">Explore the work <span aria-hidden="true">↘</span></a><Link className="text-link" href="/terminal/">Enter the terminal lab ↗</Link></div>
-      </div>
-      <div className="portrait-stage reveal delay-1" aria-label="Portrait of Jawad Krayyem">
-        <span className="orbit-label">A PERSON, NOT A PROMPT / 01</span>
-        <div className="portrait-frame"><img src="/images/jawad-profile.webp" alt="Jawad Krayyem outdoors" /></div>
-        <div className="portrait-stamp">BUILT<br />IN THE<br />OPEN</div>
-        <div className="portrait-caption">JAWAD KRAYYEM &nbsp;—&nbsp; DEVELOPER</div>
-      </div>
-    </section>
-    <div className="ticker" aria-label="Areas of exploration"><div className="ticker-track" aria-hidden="true">
-      {Array.from({ length: 2 }, (_, i) => <span key={i}>LOCAL AI <b>·</b> RETRIEVAL SYSTEMS <b>·</b> IMAGE GENERATION <b>·</b> OPEN-SOURCE EXPERIMENTS <b>·</b> THOUGHTFUL SOFTWARE <b>·</b></span>)}
-    </div></div>
-    <section className="section" id="work">
-      <div className="section-heading"><div><div className="eyebrow">A few things I’ve made</div><h2>Selected work<span style={{color:'var(--orange)'}}>.</span></h2></div><p>Small windows into a wider practice of building and learning in public.</p></div>
-      <div className="project-list">{projects.map(project => <article className="project-row" key={project.number}>
-        <span className="project-index">{project.number}</span><div><h3>{project.name}</h3><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-        <p>{project.description}</p><a className="repo-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}>Repository ↗</a>
-      </article>)}</div>
-    </section>
-    <section className="section workspace-section">
-      <div><div className="eyebrow">A small detour</div><h2>There’s a shell<br />with your name on it.</h2><p>Not just a terminal window. A safe little command-line playground, a tiny top-down adventure, and a runner. All running right here in your browser.</p><Link className="button-primary" href="/terminal/">Open the lab <span aria-hidden="true">↗</span></Link></div>
-      <div className="terminal-preview" aria-label="Decorative terminal preview"><div className="term-top"><span>jawad@workspace:~</span><span className="term-dots"><i/><i/><i/></span></div><div className="term-line"><strong>$</strong> ls ./projects</div><div className="term-line">ai-interview/ &nbsp; SDXL/</div><div className="term-line">insightpilot-RAG/ &nbsp; RAG/</div><br/><div className="term-line"><strong>$</strong> <span className="comment"># curiosity is a feature</span></div><div className="term-line"><strong>_</strong></div></div>
-    </section>
-    <section className="section about-band"><h2>Curiosity,<br />made useful.</h2><div className="about-text"><p>A practical kind of curiosity.</p><p>Jawad’s public GitHub work explores how AI can be made useful on a personal machine: generating images, finding signal in documents, and building the surrounding tools that make those ideas usable.</p><p>Each project is a snapshot of an ongoing practice: try the idea, make it work, and share what was learned.</p><a className="text-link" href="https://github.com/jawad-krayyem" target="_blank" rel="noreferrer">More on GitHub ↗</a></div></section>
-  </main><SiteFooter /></div>;
+  const featured = projects[0];
+  return <div className="site-shell"><SiteChrome active="work"/><main id="main">
+    <section className="portfolio-hero section-container" aria-labelledby="intro-title"><div className="hero-content reveal"><p className="eyebrow">Software developer / ideas into systems</p><h1 id="intro-title">Jawad<br/><span>Krayyem<span className="accent-dot">.</span></span></h1><p className="hero-description">I turn complex ideas into<br className="desktop-break"/> <strong>software you can actually use.</strong></p><p className="hero-detail">Local AI, thoughtful interfaces, and apps that work beyond the browser. Built with care, shared with context.</p><div className="button-row hero-button-row"><a className="button-primary" href="#work">View selected work <Icon name="arrow"/></a><a className="button-secondary" href="#contact">Get in touch <Icon name="mail"/></a></div><div className="hero-footnote"><span className="status-dot" aria-hidden="true"/>Exploring AI, interfaces, and ideas<span className="hero-footnote-divider">/</span><Link href="/resume/">View résumé <Icon name="external"/></Link></div></div>
+    <ProcessorExplorer/></section>
+    <div className="focus-strip"><div className="section-container"><span className="strip-label">A few recurring interests</span><span>Local AI</span><i aria-hidden="true"/><span>Useful interfaces</span><i aria-hidden="true"/><span>Offline experiences</span><i aria-hidden="true"/><span>Open source</span></div></div>
+    <section className="section-container work-section" id="work" aria-labelledby="work-title"><div className="section-heading"><div><p className="eyebrow">01 / Selected projects</p><h2 id="work-title">Ideas into practice<span className="accent-dot">.</span></h2></div><p>A closer look at the tools I build,<br/>the problems they solve, and how they work.</p></div>
+    <article className="featured-project"><div className="featured-copy"><p className="eyebrow">In focus / Document intelligence</p><h3>{featured.name}</h3><p>{featured.summary}</p><ul className="technology-tags">{featured.tags.map(tag => <li key={tag}>{tag}</li>)}</ul><Link className="button-primary" href="/projects/insightpilot/">Explore the project <Icon name="arrow"/></Link><span className="featured-caption">Local models. Inspectable sources.</span></div><Link href="/projects/insightpilot/" className="featured-image" aria-label="View InsightPilot case study"><Image src={featured.image} width={1200} height={750} alt={featured.imageAlt} sizes="(max-width: 760px) 100vw, 55vw"/><span className="preview-label">{featured.sourceLabel}</span></Link></article><ProjectGrid/></section>
+    <section className="about-section" id="about"><div className="section-container"><div className="about-heading"><div className="builder-identity"><Image src="/images/jawad-profile.webp" width={60} height={60} alt="Jawad Krayyem"/><span>Behind the work<br/><strong>Jawad Krayyem</strong></span></div><p className="eyebrow">02 / The way I work</p><h2>Curiosity, with<br/>a practical side<span className="accent-dot">.</span></h2></div><div className="about-content"><p className="large-copy">I like the part where an idea becomes something useful.</p><p>My projects explore a few connected questions: How can AI work on a personal machine? How can an interface make a complex system easier to understand? And how can an app keep being useful when it’s offline?</p><p>I work across the interface and the systems behind it—from React interfaces to Python services. This portfolio is a collection of that work, with enough detail to look beyond the surface.</p><div className="button-row"><a className="inline-link" href="https://github.com/jawad-krayyem" target="_blank" rel="noreferrer">Explore my GitHub <Icon name="external"/></a><a className="inline-link" href="/resume/jawad-krayyem-resume.pdf" download>Download résumé <Icon name="download"/></a></div></div><div className="skills-grid">{skills.map((group, index) => <article key={group.title}><span className="skill-index">0{index + 1}</span><h3>{group.title}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
+    <section className="section-container notes-section" id="notes"><div className="section-heading"><div><p className="eyebrow">03 / From the workbench</p><h2>Notes on building<span className="accent-dot">.</span></h2></div><Link className="inline-link" href="/notes/">All build notes <Icon name="arrow"/></Link></div><div className="notes-grid">{notes.map(note => <Link className="note-card" key={note.slug} href={`/notes/${note.slug}/`}><span className="eyebrow">{note.category}</span><h3>{note.title}</h3><p>{note.summary}</p><span className="inline-link">Read note <Icon name="arrow"/></span></Link>)}</div></section>
+    <section className="lab-band"><div className="section-container lab-band-inner"><div><p className="eyebrow">A small detour</p><h2>A little less scrolling.<br/>A little more exploring.</h2><p>Try a command, look around the terminal, or take the runner for a spin. A small browser playground for the curious.</p><Link className="button-primary" href="/terminal/">Enter the terminal lab <Icon name="code"/></Link></div><div className="terminal-preview" aria-hidden="true"><div className="term-top"><span>jawad@workspace:~</span><span className="term-dots"><i/><i/><i/></span></div><div className="term-line"><strong>$</strong> whoami</div><div className="term-line">A developer who likes to explore.</div><br/><div className="term-line"><strong>$</strong> ls ./interests</div><div className="term-line">local-ai/ &nbsp; mobile/ &nbsp; experiments/</div><br/><div className="term-line"><strong>$</strong> <span className="comment"># there’s always another idea</span></div></div></div></section>
+    <section className="section-container contact-section" id="contact"><div><p className="eyebrow">04 / Start a conversation</p><h2>Something in mind?<br/><span>Let’s talk.</span></h2><p>Have a question about a project, an idea to explore, or a reason to collaborate? I’d like to hear it.</p></div><ContactActions/></section>
+  </main><SiteFooter/></div>;
 }

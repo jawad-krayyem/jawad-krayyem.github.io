@@ -4,15 +4,16 @@ import { useRef, useState } from 'react';
 import type { FormEvent, KeyboardEvent } from 'react';
 import { SiteChrome, SiteFooter } from '../components/SiteChrome';
 import TrexRunner from '../components/TrexRunner';
+import { projects as portfolioProjects } from '../lib/projects';
 
 type Entry = { command: string; result: string };
 const commandMap: Record<string, string | (() => string)> = {
   help: 'Available commands:\n  help                 Show this guide\n  ls [path]            List the project workspace\n  pwd                  Print the current directory\n  whoami               Show the current user\n  projects             List public project repositories\n  cat about.txt        Read a short introduction\n  trex                 Open the Chrome T-Rex runner\n  date                 Show the local date\n  clear                Clear this terminal\n\nThis is a safe simulation. Arbitrary shell commands are not executed.',
-  ls: 'ai-interview/   SDXL/   insightpilot-RAG/   RAG/   about.txt',
-  'ls ./projects': 'ai-interview/   SDXL/   insightpilot-RAG/   RAG/',
+  ls: `${portfolioProjects.map(project => `${project.slug}/`).join('   ')}   about.txt`,
+  'ls ./projects': portfolioProjects.map(project => `${project.slug}/`).join('   '),
   pwd: '/home/jawad',
   whoami: 'jawad',
-  projects: 'ai-interview — AI interview project\nSDXL — local image generation tooling\ninsightpilot-RAG — local document-grounded RAG\nRAG — full-stack retrieval-augmented generation prototype',
+  projects: portfolioProjects.map(project => `${project.name} — ${project.summary}`).join('\n'),
   'cat about.txt': 'Software developer. Interested in useful tools, local AI, and turning experiments into working software.',
   trex: 'Chrome T-Rex runner selected. Start a run, then press Space or Up to jump. Touch players can use the Jump button.',
   date: () => new Date().toString(),

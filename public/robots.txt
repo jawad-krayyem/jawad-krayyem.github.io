@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://jawad-krayyem.github.io/sitemap.xml

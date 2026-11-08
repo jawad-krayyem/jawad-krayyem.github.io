@@ -1,0 +1,18 @@
+export type Note = { slug: string; title: string; category: string; summary: string; sections: { heading: string; text: string }[]; project: string; source?: string };
+export const notes: Note[] = [
+  { slug: 'retrieval-before-generation', title: 'A useful answer starts before the model.', category: 'Retrieval systems', summary: 'Why search, context, and source inspection belong at the center of a document assistant.', project: 'insightpilot', source: 'https://github.com/jawad-krayyem/insightpilot-RAG', sections: [
+    { heading: 'Start with the evidence', text: 'A document assistant first needs to find the right material. InsightPilot combines dense and sparse retrieval, then reranks candidate passages before passing context to the model. Each stage has a different job: broad matching, precise ordering, then answer construction.' },
+    { heading: 'Small passages, useful context', text: 'Child chunks make precise matches possible, while parent chunks retain surrounding context. The project uses a parent-child retrieval approach to avoid treating isolated fragments as a complete explanation.' },
+    { heading: 'Make inspection easy', text: 'Sources are part of the interface rather than an afterthought. A reader should be able to compare a generated answer with the retrieved material. Grounding is an engineering approach, not a promise that language models cannot make mistakes.' },
+  ] },
+  { slug: 'validate-the-output', title: 'Valid JSON is only the first check.', category: 'Structured output', summary: 'Schemas check shape. Domain checks ask whether the result makes sense.', project: 'datheon-workbench', source: 'https://github.com/jawad-krayyem/Datheon_Generative_AI_Internship', sections: [
+    { heading: 'Separate shape from consistency', text: 'Datheon AI Workbench uses Pydantic contracts for extracted invoices and résumés. An output can satisfy a schema while still containing incorrect values, so invoice arithmetic is checked independently with decimal calculations.' },
+    { heading: 'Keep uncertainty visible', text: 'Missing values remain null. Contradictory invoice totals fail validation rather than being presented as a successful extraction. These decisions make a result easier to inspect and harder to misread.' },
+    { heading: 'Know what has been tested', text: 'The repository distinguishes local workflows from an optional Gemini integration that still needs a live check. It also explains that schema and arithmetic validation do not establish perfect extraction accuracy. Keeping those limits visible is part of a useful interface.' },
+  ] },
+  { slug: 'making-room-for-interruptions', title: 'A conversation needs room for interruptions.', category: 'Browser audio', summary: 'Streaming speech is a timing problem as much as a language problem.', project: 'interview-room', source: 'https://github.com/jawad-krayyem/ai-interview', sections: [
+    { heading: 'Think in streams', text: 'The Interview Room connects browser audio to a local pipeline over WebSocket. Voice activity detection helps decide when a turn is complete, speech recognition produces text, and a language model creates the response.' },
+    { heading: 'Keep playback continuous', text: 'Speech arrives in chunks. The browser schedules audio against an AudioContext clock so successive chunks can play without unnecessary gaps. The playback queue is part of the conversational experience.' },
+    { heading: 'Let the person take the floor', text: 'When the speaker interrupts, queued audio needs to stop. The project clears active and scheduled playback when the backend reports an interruption. Recognizing that change of turn matters just as much as generating the next sentence.' },
+  ] },
+];
