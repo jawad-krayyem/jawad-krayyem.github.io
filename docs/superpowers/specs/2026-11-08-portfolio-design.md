@@ -4,7 +4,7 @@ The user approved all twenty proposed enhancements and subsequently excluded bot
 
 ## Direction
 
-Use a graphite/mint visual system with Space Grotesk and IBM Plex Mono. The user explicitly chose an interactive CPU: clicking or keyboard-activating it lifts a realistic metal heat spreader and reveals four project links. Preserve the project content and readable editorial hierarchy. Provide a light theme, a fine-pointer cursor with loading/link/scroll modes and opt-out, and native controls for touch, dialogs, forms and reduced motion. The verified UI/UX Pro Max 3D Product Preview guidance informs rendering, accessibility and performance; the generic FAQ recommendation was rejected as off-topic.
+Use Apple's Liquid Glass visual language with translucent, refractive surfaces for navigation and controls, layered gradients, and restrained blue-violet tints. Default to dark glass and let visitors switch to a pearl-and-blue light glass treatment; do not restore the retired cream palette. Keep readable content surfaces and reduced-transparency fallbacks in both modes. The user explicitly chose an interactive CPU: clicking or keyboard-activating it lifts a realistic metal heat spreader and reveals four project links. Preserve the project content and readable editorial hierarchy. Use a fine-pointer cursor with loading/link/scroll modes and opt-out, and native controls for touch, dialogs, forms and reduced motion. The verified UI/UX Pro Max Liquid Glass and 3D Product Preview guidance informs rendering, accessibility and performance; the generic FAQ recommendation was rejected as off-topic.
 
 ## Approved features
 
@@ -24,7 +24,7 @@ Use a graphite/mint visual system with Space Grotesk and IBM Plex Mono. The user
 14. App/game showcase was withdrawn by the user: include neither StudyFlow nor FRACTURE promotional content.
 15. Project category filters with an announced result count.
 16. Technical notes grounded in the reviewed repositories, with source links.
-17. Consistent and independently checked light/dark contrast.
+17. Maintain readable contrast in both Liquid Glass themes and in résumé print output.
 18. Searchable keyboard navigation using a native modal dialog, Escape, and focus restoration.
 19. Restrained transitions, optional reveal behavior and reduced-motion support.
 20. Static social preview image, canonical metadata, sitemap and descriptive page metadata.

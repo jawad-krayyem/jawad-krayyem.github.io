@@ -1,9 +1,11 @@
 # Jawad Krayyem's portfolio
 
-The graphite/mint portfolio includes an interactive Three.js processor, a custom
+The Liquid Glass portfolio includes an interactive Three.js processor, a custom
 cursor, four reviewed projects, category filters, static project
 case studies, three technical notes, a project-based résumé, keyboard navigation,
-responsive mobile navigation, light/dark themes, and a fail-open branded loader.
+responsive mobile navigation, persistent dark and light Liquid Glass themes, and a
+fail-open branded loader. Dark mode is the default; light mode uses pearl glass
+with blue-violet reflections rather than the retired cream palette.
 The app/game showcase was omitted at the user's request.
 
 ## Maintaining the portfolio
@@ -14,13 +16,14 @@ The app/game showcase was omitted at the user's request.
   Geometry, materials, lighting and labels are procedural. No external 3D model
   or HDR download is needed. It renders on demand, stops offscreen, caps pixel
   ratio, honors reduced motion and disposes its GPU resources on unmount.
-- `app/processor.css` defines the graphite/mint presentation and cursor states.
-  New visitors start in dark mode; a saved light choice is respected.
+- `app/processor.css` defines the processor layout and cursor states.
+- `app/liquid-glass.css` defines the translucent surfaces, lens-like highlights,
+  and reduced-transparency fallbacks for the Liquid Glass theme.
 - Cursor effects respond to loading, links, the chip, and scrolling. They never
   intercept pointer events or wheel scrolling. Touch, reduced motion, form fields,
   and native dialogs retain the system cursor. The footer offers an opt-out,
-  stored locally as `jk-cursor`. The graphite theme is fixed; any older saved
-  light-theme preference is cleared automatically.
+  stored locally as `jk-cursor`. The theme toggle stores `dark` or `light` as
+  `jk-theme` and applies the saved choice before the page first paints.
 
 - Edit project facts, categories, technologies and links in `app/lib/projects.ts`.
 - Edit technical notes in `app/lib/notes.ts`; detail routes export automatically.
@@ -55,7 +58,7 @@ The scripts also accept a third argument pointing at an existing Playwright
 `package.json`, so a bundled runtime can run the checks without changing project
 dependencies. Set `CHROME_PATH` when Chrome is installed outside its default
 Windows location. Checks cover filters, menu/dialog keyboard behavior, clipboard
-failure, themes, responsive images, video playback, and static deep links.
+failure, theme persistence, responsive images, video playback, and static deep links.
 
 To regenerate the résumé from a production preview, run
 `node scripts/export-resume.mjs http://127.0.0.1:4180` (the same optional

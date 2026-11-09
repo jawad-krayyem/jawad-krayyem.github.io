@@ -8,7 +8,7 @@ let failures = 0;
 async function check(name, run) { try { await run(); console.log(`PASS ${name}`); } catch (error) { failures++; console.log(`FAIL ${name}: ${error.message}`); } }
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, colorScheme: 'light', reducedMotion: 'reduce' });
-  await context.addInitScript(() => { try { localStorage.setItem('jk-theme', 'light'); localStorage.setItem('jk-analytics-consent-v1', JSON.stringify({ choice: 'rejected', savedAt: Date.now() })); } catch {} });
+  await context.addInitScript(() => { try { localStorage.setItem('jk-analytics-consent-v1', JSON.stringify({ choice: 'rejected', savedAt: Date.now() })); } catch {} });
   const page = await context.newPage();
   await page.goto(base);
   await check('terminal band focus outline has at least 3:1 contrast', async () => {
@@ -17,6 +17,7 @@ try {
     assert.ok(contrast(...colors) >= 3, `outline contrast is ${contrast(...colors).toFixed(2)}:1`);
   });
   await check('dark-theme browser printing preserves text contrast', async () => {
+    await page.evaluate(() => localStorage.setItem('jk-theme', 'dark'));
     await page.goto(`${base}/resume/`); await page.waitForFunction(() => document.documentElement.classList.contains('dark')); await page.emulateMedia({ media: 'print' });
     await page.waitForFunction(() => getComputedStyle(document.querySelector('.resume-sheet')).backgroundColor === 'rgb(255, 255, 255)');
     const colors = await page.evaluate(() => [getComputedStyle(document.querySelector('.resume-skills span')).color, getComputedStyle(document.querySelector('.resume-sheet')).backgroundColor]);
@@ -41,12 +42,17 @@ try {
       const captions = await page.request.get(`${base}/demos/${slug}.vtt`); assert.equal(captions.status(), 200); assert.match(await captions.text(), /^WEBVTT/);
     }
   });
-  await check('the graphite theme stays fixed and clears an old light preference', async () => {
+  await check('Liquid Glass theme switch persists both choices', async () => {
     await page.goto(base);
-    assert.equal(await page.getByRole('button', { name: /Switch to (light|dark) theme/ }).count(), 0);
-    await page.evaluate(() => localStorage.setItem('jk-theme', 'light'));
-    await page.reload(); await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
-    assert.deepEqual(await page.evaluate(() => ({ paper: getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(), oldPreference: localStorage.getItem('jk-theme') })), { paper: '#0d1213', oldPreference: null });
+    const switchTheme = page.getByRole('button', { name: 'Switch to light theme' });
+    assert.equal(await switchTheme.count(), 1, 'dark theme should offer the light theme');
+    await switchTheme.click();
+    await page.waitForFunction(() => !document.documentElement.classList.contains('dark'));
+    assert.deepEqual(await page.evaluate(() => ({ paper: getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(), preference: localStorage.getItem('jk-theme') })), { paper: '#f2f5fb', preference: 'light' });
+    await page.reload(); await page.waitForFunction(() => !document.documentElement.classList.contains('dark'));
+    await page.getByRole('button', { name: 'Switch to dark theme' }).click();
+    await page.waitForFunction(() => document.documentElement.classList.contains('dark'));
+    assert.deepEqual(await page.evaluate(() => ({ paper: getComputedStyle(document.documentElement).getPropertyValue('--paper').trim(), preference: localStorage.getItem('jk-theme') })), { paper: '#080b12', preference: 'dark' });
   });
   await context.close();
 } finally { await browser.close(); }

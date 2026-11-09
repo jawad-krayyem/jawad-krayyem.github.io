@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
         <p>This portfolio uses Google Analytics only after you choose Accept analytics. It helps us understand page visits and how people use the site. When enabled, it can use analytics cookies and send information such as the page URL, browser and device details, and interactions to Google.</p>
         <p>You can reject analytics and continue using the website. To change or withdraw your choice, use Privacy settings in the footer. Rejecting disables further Google Analytics collection and removes this site's accessible Google Analytics cookies.</p>
         <p>Your choice is saved in your browser's local storage for up to 180 days. If storage is unavailable, your choice applies to the current page and you will be asked again on your next visit.</p>
-        <p>Your optional cursor preference is saved in this browser so you can remember your preferred cursor effect. The portfolio appearance uses a single theme.</p>
+        <p>Your theme and optional cursor preferences are saved in this browser so you can remember how you like to view the site.</p>
         <p><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">How Google uses information from sites that use its services ↗</a></p>
       </section>
       <p className="privacy-note">Source text · FRACTURE Privacy Policy</p><div className="policy-paper"><pre>{policy}</pre></div>

@@ -8,6 +8,7 @@ import CustomCursor from './components/CustomCursor';
 import './globals.css';
 import './portfolio.css';
 import './processor.css';
+import './liquid-glass.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jawad-krayyem.github.io'),
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: "try{localStorage.removeItem('jk-theme')}catch(e){}" }}/></head>
+      <head><script dangerouslySetInnerHTML={{ __html: "try{var t=localStorage.getItem('jk-theme');document.documentElement.classList.toggle('dark',t!=='light')}catch(e){document.documentElement.classList.add('dark')}" }}/></head>
       <body>
         <SiteLoader />
         {children}

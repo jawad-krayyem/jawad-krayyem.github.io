@@ -68,7 +68,7 @@
 ### Authorized scope extension: processor and cursor
 
 - [x] Add `ProcessorExplorer`, lazy `processor-scene`, `CustomCursor`, and `processor.css`.
-- [x] Apply graphite/mint default dark theme while respecting saved light mode.
+- [x] Add the persistent Liquid Glass theme toggle, with dark as the default and a pearl-and-blue light mode.
 - [x] Improve physical materials and chip geometry following the user’s realism request.
 - [x] Verify real WebGL, reveal/close behavior, cursor modes, opt-out across navigation, reduced motion and WebGL failure.
 - [x] Independently review the new delta; fix cursor-state synchronization and verify its regression.
