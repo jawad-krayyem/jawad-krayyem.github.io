@@ -45,6 +45,7 @@ Build and typecheck; exercise category filtering, mobile menu, command dialog, c
 ## Processor and cursor requirements
 
 - Real WebGL geometry with procedural materials, studio reflections, beveled metal, a layered substrate and silicon die. No external model downloads.
+- CPU visual direction: a premium macro product render with a satin-machined, laser-marked heat spreader; rounded dark ceramic/PCB layers; fine copper routing, solder joints and LGA contacts; and an exposed multi-chip silicon package under the lifted lid. The closed view should feel like a photographed physical component; the open view may add a restrained cool thermal glow tied to the lid reveal.
 - Semantic button and ordinary project links; a poster fallback preserves navigation when WebGL fails.
 - Render on demand; cap pixel ratio at 1.6, pause offscreen/hidden, follow live reduced-motion changes, and dispose geometry, materials, textures, shadows, observers and renderer.
 - The cursor never captures events or changes scrolling. Restore the native cursor for touch, reduced motion, input fields and native dialogs. Remember opt-out and synchronize settings after client navigation.
