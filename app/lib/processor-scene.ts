@@ -2,7 +2,7 @@ import { Scene, PerspectiveCamera, WebGLRenderer, Group, Mesh, Material, MeshSta
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-export type ProcessorScene = { setExpanded(value: boolean): void; setPointer(x: number, y: number): void; dispose(): void };
+export type ProcessorScene = { setExpanded(value: boolean): void; setExploded(value: boolean): void; setPointer(x: number, y: number): void; rotateBy(x: number, y: number): void; setFocus(index: number): void; resetView(): void; dispose(): void };
 
 export function mountProcessor(host: HTMLElement, onLost: () => void): ProcessorScene {
   const canvas = document.createElement('canvas');
@@ -87,9 +87,11 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
   silicon.map = dieTexture; ioSilicon.map = dieTexture; silicon.needsUpdate = true; ioSilicon.needsUpdate = true;
   const computeSurface = own(new MeshPhysicalMaterial({ map: dieTexture, color: 0xe0e8eb, metalness: .04, roughness: .34, clearcoat: .55, clearcoatRoughness: .18, emissive: 0x072434, emissiveIntensity: 0 }));
   const ioSurface = own(new MeshPhysicalMaterial({ map: dieTexture, color: 0xc5d3d7, metalness: .04, roughness: .4, clearcoat: .38, emissive: 0x072434, emissiveIntensity: 0 }));
+  const chipletGroups: Group[] = [];
   for (const [x, z] of [[-.38, -.38], [.38, -.38], [-.38, .38], [.38, .38]]) {
-    roundedBox(.54, .042, .62, silicon, x, .027, z, .022);
-    const surface = new Mesh(own(new PlaneGeometry(.5, .58)), computeSurface); surface.rotation.x = -Math.PI / 2; surface.position.set(x, .049, z); surface.receiveShadow = true; processor.add(surface);
+    const chiplet = new Group(); chiplet.position.set(x, 0, z); processor.add(chiplet); chipletGroups.push(chiplet);
+    roundedBox(.54, .042, .62, silicon, 0, .027, 0, .022, chiplet);
+    const surface = new Mesh(own(new PlaneGeometry(.5, .58)), computeSurface); surface.rotation.x = -Math.PI / 2; surface.position.set(0, .049, 0); surface.receiveShadow = true; chiplet.add(surface);
   }
   roundedBox(.24, .04, 1.52, interposer, 0, .026, 0, .018);
   const ioFace = new Mesh(own(new PlaneGeometry(.21, 1.48)), ioSurface); ioFace.rotation.x = -Math.PI / 2; ioFace.position.set(0, .048, 0); processor.add(ioFace);
@@ -168,7 +170,7 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
   const coreLight = new PointLight(0xa3d8ee, .4, 4); coreLight.position.set(0, .8, 0); scene.add(coreLight);
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const timer = new Timer(); timer.connect(document);
-  let expanded = false, pointerX = 0, pointerY = 0, progress = 0, angleX = .07, angleY = -.18;
+  let expanded = false, exploded = false, focusedChiplet = -1, pointerX = 0, pointerY = 0, progress = 0, explosionProgress = 0, angleX = .07, angleY = -.18;
   let frame = 0, visible = true, disposed = false, lost = false;
   function schedule() { if (!frame && !disposed && !lost && visible && !document.hidden) frame = requestAnimationFrame(render); }
   function render(timestamp: number) {
@@ -176,13 +178,20 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
     timer.update(timestamp); const delta = Math.min(timer.getDelta(), .05); const ease = motion.matches ? 1 : 1 - Math.exp(-Math.max(delta, 1 / 120) * 9);
     const target = expanded ? 1 : 0, targetX = .07 + (motion.matches ? 0 : pointerY * .12), targetY = -.18 + (motion.matches ? 0 : pointerX * .22);
     progress += (target - progress) * ease; angleX += (targetX - angleX) * ease; angleY += (targetY - angleY) * ease;
+    const explosionTarget = exploded ? 1 : 0; explosionProgress += (explosionTarget - explosionProgress) * ease;
+    for (const [index, chiplet] of chipletGroups.entries()) {
+      const directionX = index % 2 === 0 ? -1 : 1, directionZ = index < 2 ? -1 : 1;
+      chiplet.position.set(directionX * (.38 + explosionProgress * .34), explosionProgress * (.28 + index * .025), directionZ * (.38 + explosionProgress * .34));
+      const emphasis = focusedChiplet < 0 ? 1 : focusedChiplet === index ? 1.08 : .92;
+      chiplet.scale.setScalar(emphasis);
+    }
     processor.rotation.set(angleX, angleY, 0); processor.scale.setScalar(1 - progress * .14);
     lid.position.y = .17 + progress * 1.15; lid.rotation.z = progress * -.12; lid.position.x = progress * -.18;
     const glow = progress * progress;
     silicon.emissiveIntensity = .025 + glow * .11; ioSilicon.emissiveIntensity = .02 + glow * .07;
     computeSurface.emissiveIntensity = glow * .18; ioSurface.emissiveIntensity = glow * .12;
     coreLight.intensity = .16 + glow * .72; renderer.render(scene, camera);
-    if (Math.abs(target - progress) > .001 || Math.abs(targetX - angleX) > .001 || Math.abs(targetY - angleY) > .001) schedule();
+    if (Math.abs(target - progress) > .001 || Math.abs(explosionTarget - explosionProgress) > .001 || Math.abs(targetX - angleX) > .001 || Math.abs(targetY - angleY) > .001) schedule();
   }
   const resize = new ResizeObserver(() => { const rect = host.getBoundingClientRect(); if (!rect.width || !rect.height) return; renderer.setSize(rect.width, rect.height, false); camera.aspect = rect.width / rect.height; camera.updateProjectionMatrix(); schedule(); }); resize.observe(host);
   const intersection = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) schedule(); else { cancelAnimationFrame(frame); frame = 0; } }); intersection.observe(host);
@@ -191,7 +200,11 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
   schedule();
   return {
     setExpanded(value) { expanded = value; schedule(); },
+    setExploded(value) { exploded = value; schedule(); },
     setPointer(x, y) { pointerX = x; pointerY = y; schedule(); },
+    rotateBy(x, y) { angleX = Math.max(-.42, Math.min(.42, angleX + y)); angleY += x; schedule(); },
+    setFocus(index) { focusedChiplet = index; schedule(); },
+    resetView() { exploded = false; expanded = false; focusedChiplet = -1; pointerX = 0; pointerY = 0; angleX = .07; angleY = -.18; schedule(); },
     dispose() { disposed = true; cancelAnimationFrame(frame); resize.disconnect(); intersection.disconnect(); motion.removeEventListener('change', changed); document.removeEventListener('visibilitychange', changed); canvas.removeEventListener('webglcontextlost', contextLost); timer.dispose(); resources.forEach(resource => resource.dispose()); renderer.dispose(); renderer.forceContextLoss(); canvas.remove(); },
   };
 }

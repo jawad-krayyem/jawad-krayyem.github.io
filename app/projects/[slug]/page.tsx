@@ -5,13 +5,14 @@ import { notFound } from 'next/navigation';
 import { projects } from '../../lib/projects';
 import { SiteChrome, SiteFooter } from '../../components/SiteChrome';
 import { Icon } from '../../components/Icons';
+import ProjectEnhancements from '../../components/ProjectEnhancements';
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() { return projects.map(project => ({ slug: project.slug })); }
 export const dynamicParams = false;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find(item => item.slug === slug);
-  return { title: `${project?.name || 'Project'} — Jawad Krayyem`, description: project?.summary, alternates: { canonical: `/projects/${slug}/` }, openGraph: { title: `${project?.name} — Jawad Krayyem`, description: project?.summary, images: ['/og-image.png'] } };
+  return { title: `${project?.name || 'Project'} — Jawad Krayyem`, description: project?.summary, alternates: { canonical: `/projects/${slug}/` }, openGraph: { title: `${project?.name} — Jawad Krayyem`, description: project?.summary, images: [`/og/projects/${slug}.png`] }, twitter: { card: 'summary_large_image', title: `${project?.name} — Jawad Krayyem`, description: project?.summary, images: [`/og/projects/${slug}.png`] } };
 }
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
@@ -24,6 +25,7 @@ export default async function ProjectPage({ params }: Props) {
     <section className="pipeline-section" aria-labelledby="pipeline-title"><p className="eyebrow" id="pipeline-title">A simple view of the flow</p><ol className="pipeline">{project.pipeline.map((step, index) => <li key={step}><span>0{index + 1}</span><strong>{step}</strong>{index < project.pipeline.length - 1 && <Icon name="arrow"/>}</li>)}</ol></section>
     <section className="case-preview" id="preview"><div className="section-heading"><div><p className="eyebrow">A closer look</p><h2>{project.video ? 'See the workflow.' : 'Inside the project.'}</h2></div></div>{project.video ? <><video controls playsInline preload="none" poster={project.image} aria-label={`${project.name} walkthrough`}><source src={project.video} type="video/webm"/><track default kind="captions" srcLang="en" label="English" src={`/demos/${project.slug}.vtt`}/>Your browser cannot play this video. <a href={project.video}>Download the walkthrough</a>.</video><p className="media-disclosure">Recorded interface preview using synthetic content and responses. No live AI inference is shown. Silent video with English captions. <a href={`/demos/${project.slug}.vtt`}>Read the captions</a>.</p></> : <div className="feature-list">{project.features.map((feature, index) => <div key={feature}><span>0{index + 1}</span><h3>{feature}</h3><Icon name="check"/></div>)}</div>}</section>
     <section className="case-bottom-grid" id="details"><article><p className="eyebrow">What to know</p><h2>Scope &amp; limitations.</h2><p>{project.limitation}</p></article><article><p className="eyebrow">Try it yourself</p><h2>{project.repository ? 'Run it locally.' : 'More about the app.'}</h2><p>{project.setup}</p>{project.repository && <a className="inline-link" href={`${project.repository}#readme`} target="_blank" rel="noreferrer">Setup instructions <Icon name="external"/></a>}</article></section>
+    <ProjectEnhancements project={project}/>
     <Link className="next-project" href={`/projects/${next.slug}/`}><span><small>Keep exploring / Next project</small><strong>{next.name}</strong></span><Icon name="arrow" width="36" height="36"/></Link>
   </main><SiteFooter/></div>;
 }

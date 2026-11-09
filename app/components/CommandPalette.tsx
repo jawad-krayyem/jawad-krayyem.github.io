@@ -7,7 +7,7 @@ import { Icon } from './Icons';
 const destinations = [
   { name: 'Home', detail: 'Introduction', href: '/' }, { name: 'Selected work', detail: 'All projects', href: '/#work' },
   { name: 'About', detail: 'Skills and approach', href: '/#about' }, { name: 'Contact', detail: 'Get in touch', href: '/#contact' },
-  { name: 'Build notes', detail: 'Technical writing', href: '/notes/' }, { name: 'Résumé', detail: 'Project-based profile', href: '/resume/' },
+  { name: 'Build notes', detail: 'Technical writing', href: '/notes/' }, { name: 'Compare projects', detail: 'Scope and requirements', href: '/compare/' }, { name: 'Résumé', detail: 'Project-based profile', href: '/resume/' },
   { name: 'Terminal lab', detail: 'Interactive playground', href: '/terminal/' },
   ...projects.map(project => ({ name: project.name, detail: project.tags.join(' · '), href: `/projects/${project.slug}/` })),
 ];

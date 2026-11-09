@@ -4,11 +4,13 @@ import AnalyticsConsent from './components/AnalyticsConsent';
 import CommandPalette from './components/CommandPalette';
 import SiteLoader from './components/SiteLoader';
 import CustomCursor from './components/CustomCursor';
+import OfflineSupport from './components/OfflineSupport';
 
 import './globals.css';
 import './portfolio.css';
 import './processor.css';
 import './liquid-glass.css';
+import './enhancements.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jawad-krayyem.github.io'),
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  manifest: '/manifest.webmanifest',
   openGraph: {
     title: 'Jawad Krayyem — Software Developer & Builder',
     description: 'Selected software projects and browser experiments.',
@@ -37,6 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <CommandPalette />
         <CustomCursor />
         <AnalyticsConsent />
+        <OfflineSupport />
       </body>
     </html>
   );

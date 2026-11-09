@@ -1,0 +1,11 @@
+{
+  "name": "Jawad Krayyem — Software Developer",
+  "short_name": "Jawad Krayyem",
+  "description": "Software projects, local AI, and thoughtful interfaces.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080b12",
+  "theme_color": "#080b12",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

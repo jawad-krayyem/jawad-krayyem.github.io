@@ -46,6 +46,17 @@ jobs:
       - name: Build static site
         run: pnpm build
 
+      - name: Verify exported routes and enhancement assets
+        run: |
+          pnpm exec serve out -l 4180 > /tmp/portfolio-preview.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl -fsS http://127.0.0.1:4180/ >/dev/null; then break; fi
+            sleep 1
+          done
+          pnpm test:enhancements http://127.0.0.1:4180/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

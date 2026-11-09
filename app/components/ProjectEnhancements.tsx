@@ -1,0 +1,48 @@
+'use client';
+import { useState } from 'react';
+import type { Project } from '../lib/projects';
+import { getProjectEnhancement } from '../lib/project-enhancements';
+
+const sampleData: Record<string, { title: string; prompt: string; answer: string; source: string; alt: string }> = {
+  insightpilot: { title: 'Ask a sample handbook', prompt: 'What is the reimbursement limit?', answer: 'The fictional sample handbook lists a $450 equipment reimbursement limit.', source: 'sample-handbook.pdf · page 4', alt: 'Synthetic sample document' },
+  'sdxl-studio': { title: 'Preview a studio workflow', prompt: 'A glass greenhouse at blue hour', answer: 'Static preview only · generation is not running in this browser.', source: 'Example mode: text to image', alt: 'SDXL Studio sample interface' },
+  'interview-room': { title: 'Step through a sample voice turn', prompt: 'How do you handle a difficult deadline?', answer: 'I clarify the goal, identify the highest-risk work, and keep stakeholders updated as I make progress.', source: 'Synthetic transcript · no microphone access', alt: 'Synthetic interview response' },
+  'datheon-workbench': { title: 'Inspect a fictional extraction', prompt: 'Equipment reimbursement limit', answer: '{\n  "policy": "equipment reimbursement",\n  "limit_usd": 450,\n  "source": "sample-handbook.pdf, page 4"\n}', source: 'Fictional sample handbook · not real policy', alt: 'Fictional structured extraction preview' },
+};
+
+function ProjectDemo({ project }: { project: Project }) {
+  const sample = sampleData[project.slug];
+  const [step, setStep] = useState(0);
+  const [query, setQuery] = useState(sample.prompt);
+  const hasSampleEvidence = /equipment|reimbursement|limit/i.test(query);
+  const answer = project.slug === 'insightpilot'
+    ? hasSampleEvidence ? sample.answer : 'No matching passage in this fictional sample. Try asking about the equipment reimbursement limit.'
+    : project.slug === 'datheon-workbench' && step > 0 ? `${sample.answer.slice(0, -2)},\n  "preview_check": "illustrative shape only"\n}` : sample.answer;
+  const source = project.slug === 'insightpilot' && !hasSampleEvidence ? 'No matching source passage' : sample.source;
+  return <section className="project-demo" data-local-sample="true" aria-labelledby="demo-title">
+    <div className="feature-section-heading"><div><p className="eyebrow">Try a local sample</p><h2 id="demo-title">A small, safe preview.</h2></div><span className="demo-local-badge">Synthetic data · stays here</span></div>
+    <p className="demo-disclosure">This static sample runs in your browser only. It does not send text, turn on a microphone, or run a model.</p>
+    <div className={`demo-workbench demo-${project.slug}`}>
+      <div className="demo-toolbar"><span><i aria-hidden="true"/>{sample.title}</span><span>LOCAL SAMPLE / 01</span></div>
+      {project.slug === 'insightpilot' && <div className="demo-interaction"><label htmlFor="sample-query">Ask the sample document</label><div className="demo-query"><input id="sample-query" value={query} onChange={event => setQuery(event.target.value)} /><button type="button" onClick={() => setStep(value => value + 1)}>Show answer</button></div></div>}
+      {project.slug === 'sdxl-studio' && <div className="demo-interaction"><label htmlFor="sample-prompt">Example prompt</label><textarea id="sample-prompt" value={query} onChange={event => setQuery(event.target.value)} rows={2}/><div className="demo-mode-row">{['Text to image', 'Image to image', 'Inpainting', 'ControlNet'].map((mode, index) => <button type="button" aria-pressed={step === index} key={mode} onClick={() => setStep(index)}>{mode}</button>)}</div></div>}
+      {project.slug === 'interview-room' && <div className="demo-interaction"><span className="demo-step-label">Conversation step {step + 1} / 3</span><p className="demo-transcript">{step === 0 ? 'Interviewer · Tell me about a project you enjoyed building.' : step === 1 ? 'You · I enjoyed connecting a clear interface with a system that works locally.' : 'Interviewer · What would you improve next?'} </p><button type="button" onClick={() => setStep(value => (value + 1) % 3)}>Next conversation step</button></div>}
+      {project.slug === 'datheon-workbench' && <div className="demo-interaction"><span className="demo-step-label">Fictional handbook example</span><button type="button" onClick={() => setStep(value => value + 1)}>Validate sample fields</button></div>}
+      <div className="demo-answer"><span>{project.slug === 'sdxl-studio' ? `Selected mode · ${['Text to image', 'Image to image', 'Inpainting', 'ControlNet'][step % 4]}` : `Static sample · ${step > 0 ? 'illustrative check' : 'preview'}`}</span><p>{project.slug === 'sdxl-studio' ? query : answer}</p><small>{source}</small></div>
+    </div>
+  </section>;
+}
+
+export default function ProjectEnhancements({ project }: { project: Project }) {
+  const enhancement = getProjectEnhancement(project);
+  const [tour, setTour] = useState(0);
+  return <>
+    <ProjectDemo project={project}/>
+    <section className="project-tour" aria-labelledby="tour-title"><div className="feature-section-heading"><div><p className="eyebrow">Guided tour</p><h2 id="tour-title">Follow the work, one step at a time.</h2></div><div className="tour-controls"><button type="button" aria-label="Previous tour step" onClick={() => setTour(value => (value - 1 + project.pipeline.length) % project.pipeline.length)}>←</button><span aria-live="polite">{String(tour + 1).padStart(2, '0')} / {String(project.pipeline.length).padStart(2, '0')}</span><button type="button" aria-label="Next tour step" onClick={() => setTour(value => (value + 1) % project.pipeline.length)}>→</button></div></div><ol className="tour-steps">{project.pipeline.map((step, index) => <li key={step} data-current={index === tour}><button type="button" aria-current={index === tour ? 'step' : undefined} onClick={() => setTour(index)}><span>0{index + 1}</span>{step}</button></li>)}</ol><p className="tour-detail" aria-live="polite">{project.approach[tour % project.approach.length]}</p></section>
+    <section className="project-evidence" aria-labelledby="evidence-title"><div className="feature-section-heading"><div><p className="eyebrow">Evidence, with context</p><h2 id="evidence-title">What the repository demonstrates.</h2></div></div><div className="evidence-grid"><article className="evidence-card"><span>01 / Implementation</span><strong>{project.features[0]}</strong><p>Verified against the public source and project documentation.</p></article><article className="evidence-card"><span>02 / Scope</span><strong>{project.features[Math.min(1, project.features.length - 1)]}</strong><p>Describes shipped project functionality, not user or customer outcomes.</p></article><article className="evidence-card evidence-unmeasured"><span>03 / Performance</span><strong>Outcome metrics not published</strong><p>No speed, quality, adoption, or customer results are presented as measured.</p></article></div><p className="benchmark-disclosure"><strong>Benchmark protocol:</strong> {enhancement.benchmark}</p></section>
+    <section className="architecture-section" aria-labelledby="architecture-title"><div className="feature-section-heading"><div><p className="eyebrow">System map</p><h2 id="architecture-title">How the parts fit together.</h2></div><span className="disclosure-badge">Expand a layer for details</span></div><div className="architecture-nodes">{enhancement.architecture.map((node, index) => <details className="architecture-node" key={node.label}><summary><span>0{index + 1}</span><strong>{node.label}</strong><i aria-hidden="true">+</i></summary><p>{node.detail}</p><a href={node.file} target="_blank" rel="noreferrer">Open related source <span aria-hidden="true">↗</span></a></details>)}</div></section>
+    <section className="project-meta-grid"><article className="decisions-section"><p className="eyebrow">Engineering choices</p><h2>Trade-offs I made.</h2>{enhancement.decisions.map((decision, index) => <div className="engineering-decision" key={decision.choice}><span>0{index + 1}</span><div><strong>{decision.choice}</strong><p>{decision.tradeoff}</p></div></div>)}</article><article className="source-map"><p className="eyebrow">Source map</p><h2>Where to look in the code.</h2>{enhancement.codeMap.map((item, index) => <a href={`${project.repository}/blob/main/${item.path}`} target="_blank" rel="noreferrer" key={item.path}><span>0{index + 1}</span><span><strong>{item.label}</strong><small>{item.detail}</small></span><code>{item.path}</code></a>)}</article></section>
+    <section className="delivery-section"><div className="feature-section-heading"><div><p className="eyebrow">Build path</p><h2>How the workflow is assembled.</h2></div></div><ol className="project-phases">{enhancement.phases.map((phase, index) => <li className="project-phase" key={phase}><span>0{index + 1}</span><strong>{phase}</strong></li>)}</ol><div className="disclosure-grid"><article className="data-disclosure"><span>Runtime &amp; data</span><p>{enhancement.privacy}</p></article><article className="benchmark-disclosure"><span>Results &amp; release status</span><p>No public benchmark is presented. The current repository and its README describe source and setup; release availability is not independently verified here.</p></article></div></section>
+    <div className="feature-links"><a className="project-contact" href={`mailto:krayyemjawad@gmail.com?subject=${encodeURIComponent(enhancement.contactSubject)}`}>Ask about this project <span aria-hidden="true">↗</span></a>{project.repository && <a href={`${project.repository}#readme`} target="_blank" rel="noreferrer">Source &amp; setup <span aria-hidden="true">↗</span></a>}</div>
+  </>;
+}
