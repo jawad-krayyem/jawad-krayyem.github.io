@@ -46,7 +46,7 @@ jobs:
       - name: Build static site
         run: pnpm build
 
-      - name: Verify exported routes and enhancement assets
+      - name: Verify exported routes, offline shell, and orbit behavior
         run: |
           pnpm exec serve out -l 4180 > /tmp/portfolio-preview.log 2>&1 &
           server_pid=$!
@@ -56,6 +56,8 @@ jobs:
             sleep 1
           done
           pnpm test:enhancements http://127.0.0.1:4180/
+          pnpm test:offline http://127.0.0.1:4180/
+          pnpm test:orbit
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

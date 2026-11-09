@@ -72,7 +72,9 @@ const sw = await fetchPage('/sw.js');
 await check('static offline manifest and scoped service worker are present', async () => {
   assert.equal(manifest.response.status, 200);
   assert.equal(sw.response.status, 200);
-  assert.ok(has(sw.html, 'jawad-portfolio'));
+  assert.ok(has(sw.html, 'jawad-portfolio-v2'));
+  assert.ok(has(sw.html, 'matchAll'));
+  assert.ok(has(sw.html, "'/offline.html'"));
   assert.ok(!/googletagmanager|google-analytics/i.test(sw.html));
 });
 if (failures) process.exitCode = 1;

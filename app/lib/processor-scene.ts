@@ -1,6 +1,7 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, Group, Mesh, Material, MeshStandardMaterial, MeshPhysicalMaterial, BoxGeometry, CylinderGeometry, PlaneGeometry, TorusGeometry, CanvasTexture, SRGBColorSpace, InstancedMesh, Object3D, HemisphereLight, DirectionalLight, PointLight, Timer, ACESFilmicToneMapping, PMREMGenerator, ShadowMaterial, PCFShadowMap, DoubleSide } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { DEFAULT_PROCESSOR_ORBIT, getProcessorTargetAngles, rotateProcessorOrbit } from './processor-orbit.mjs';
 
 export type ProcessorScene = { setExpanded(value: boolean): void; setExploded(value: boolean): void; setPointer(x: number, y: number): void; rotateBy(x: number, y: number): void; setFocus(index: number): void; resetView(): void; dispose(): void };
 
@@ -171,12 +172,12 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const timer = new Timer(); timer.connect(document);
   let expanded = false, exploded = false, focusedChiplet = -1, pointerX = 0, pointerY = 0, progress = 0, explosionProgress = 0, angleX = .07, angleY = -.18;
-  let frame = 0, visible = true, disposed = false, lost = false;
+  let frame = 0, visible = true, disposed = false, lost = false, orbit = DEFAULT_PROCESSOR_ORBIT;
   function schedule() { if (!frame && !disposed && !lost && visible && !document.hidden) frame = requestAnimationFrame(render); }
   function render(timestamp: number) {
     frame = 0; if (disposed || lost || !visible || document.hidden) return;
     timer.update(timestamp); const delta = Math.min(timer.getDelta(), .05); const ease = motion.matches ? 1 : 1 - Math.exp(-Math.max(delta, 1 / 120) * 9);
-    const target = expanded ? 1 : 0, targetX = .07 + (motion.matches ? 0 : pointerY * .12), targetY = -.18 + (motion.matches ? 0 : pointerX * .22);
+    const target = expanded ? 1 : 0, { x: targetX, y: targetY } = getProcessorTargetAngles(orbit, pointerX, pointerY, motion.matches);
     progress += (target - progress) * ease; angleX += (targetX - angleX) * ease; angleY += (targetY - angleY) * ease;
     const explosionTarget = exploded ? 1 : 0; explosionProgress += (explosionTarget - explosionProgress) * ease;
     for (const [index, chiplet] of chipletGroups.entries()) {
@@ -202,9 +203,9 @@ export function mountProcessor(host: HTMLElement, onLost: () => void): Processor
     setExpanded(value) { expanded = value; schedule(); },
     setExploded(value) { exploded = value; schedule(); },
     setPointer(x, y) { pointerX = x; pointerY = y; schedule(); },
-    rotateBy(x, y) { angleX = Math.max(-.42, Math.min(.42, angleX + y)); angleY += x; schedule(); },
+    rotateBy(x, y) { orbit = rotateProcessorOrbit(orbit, x, y); schedule(); },
     setFocus(index) { focusedChiplet = index; schedule(); },
-    resetView() { exploded = false; expanded = false; focusedChiplet = -1; pointerX = 0; pointerY = 0; angleX = .07; angleY = -.18; schedule(); },
+    resetView() { exploded = false; expanded = false; focusedChiplet = -1; orbit = DEFAULT_PROCESSOR_ORBIT; pointerX = 0; pointerY = 0; angleX = .07; angleY = -.18; schedule(); },
     dispose() { disposed = true; cancelAnimationFrame(frame); resize.disconnect(); intersection.disconnect(); motion.removeEventListener('change', changed); document.removeEventListener('visibilitychange', changed); canvas.removeEventListener('webglcontextlost', contextLost); timer.dispose(); resources.forEach(resource => resource.dispose()); renderer.dispose(); renderer.forceContextLoss(); canvas.remove(); },
   };
 }

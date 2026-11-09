@@ -12,6 +12,8 @@
     "build": "next build",
     "preview": "serve out",
     "test:enhancements": "node tests/enhancements.mjs",
+    "test:offline": "node tests/offline-worker.mjs",
+    "test:orbit": "node --experimental-strip-types tests/processor-orbit.mjs",
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
