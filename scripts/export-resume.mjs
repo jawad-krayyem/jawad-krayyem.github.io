@@ -6,7 +6,7 @@ const { chromium } = require('playwright');
 const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true });
 try {
   const context = await browser.newContext({ colorScheme: 'light' });
-  await context.addInitScript(() => { localStorage.setItem('jk-theme', 'light'); localStorage.setItem('jk-analytics-consent-v1', JSON.stringify({ choice: 'rejected', savedAt: Date.now() })); });
+  await context.addInitScript(() => { localStorage.setItem('jk-analytics-consent-v1', JSON.stringify({ choice: 'rejected', savedAt: Date.now() })); });
   const page = await context.newPage();
   await page.route('**/www.googletagmanager.com/**', route => route.abort());
   const response = await page.goto(`${process.argv[2] || 'http://127.0.0.1:4180'}/resume/`, { waitUntil: 'networkidle' });

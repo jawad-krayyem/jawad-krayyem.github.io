@@ -2,30 +2,18 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
-  --paper: #f3f1e9;
-  --paper-deep: #e9e7dc;
-  --ink: #202821;
-  --muted: #657067;
-  --line: rgba(32,40,33,.16);
-  --green: #285f46;
-  --acid: #c6df68;
-  --orange: #d66d46;
-  --panel: #e9e8dd;
+  color-scheme: dark;
+  --paper: #0d1213;
+  --paper-deep: #131c1c;
+  --ink: #eaf1ec;
+  --muted: #a6bbb0;
+  --line: rgba(163,204,182,.18);
+  --green: #8de4bc;
+  --acid: #b6f1d5;
+  --orange: #8de4bc;
+  --panel: #182321;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --display: "Space Grotesk", sans-serif;
-}
-.dark {
-  color-scheme: dark;
-  --paper: #171d19;
-  --paper-deep: #202923;
-  --ink: #e9eee2;
-  --muted: #a0aa9e;
-  --line: rgba(233,238,226,.17);
-  --green: #91c6a0;
-  --acid: #c8e36d;
-  --orange: #e28b61;
-  --panel: #252e27;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--paper); }
@@ -43,7 +31,6 @@ a { text-decoration: none; }
 .nav-links { display:flex; align-items:center; gap:34px; font:11px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
 .nav-links a { opacity:.68; transition:opacity .2s; }
 .nav-links a:hover,.nav-links a.active { opacity:1; color:var(--green); }
-.theme-toggle,.menu-toggle { border:1px solid var(--line); background:transparent; border-radius:99px; padding:9px 13px; cursor:pointer; font:10px var(--mono); text-transform:uppercase; letter-spacing:.08em; }
 .mobile-nav { display:none; }
 .hero { display:grid; grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr); max-width:1370px; margin:auto; padding:clamp(58px,9vw,132px) clamp(20px,6vw,92px) 92px; min-height:650px; align-items:center; gap:5vw; }
 .eyebrow { color:var(--green); font:11px var(--mono); letter-spacing:.13em; text-transform:uppercase; display:flex; align-items:center; gap:11px; }
@@ -180,7 +167,6 @@ a { text-decoration: none; }
 }
 @media(max-width:420px) {
   .topbar { padding-inline:14px; }.brand { gap:7px; font-size:12px; }.mobile-nav { gap:5px; }.mobile-nav a { font-size:7px; }
-  .theme-toggle { padding:8px; font-size:9px; }
   .hero-actions { gap:15px; flex-wrap:wrap; }
   .project-row { grid-template-columns:30px 1fr auto; }
   .project-row h3 { font-size:17px; }

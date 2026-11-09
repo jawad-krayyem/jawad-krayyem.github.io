@@ -19,7 +19,8 @@ The app/game showcase was omitted at the user's request.
 - Cursor effects respond to loading, links, the chip, and scrolling. They never
   intercept pointer events or wheel scrolling. Touch, reduced motion, form fields,
   and native dialogs retain the system cursor. The footer offers an opt-out,
-  stored locally as `jk-cursor`; theme preference uses `jk-theme`.
+  stored locally as `jk-cursor`. The graphite theme is fixed; any older saved
+  light-theme preference is cleared automatically.
 
 - Edit project facts, categories, technologies and links in `app/lib/projects.ts`.
 - Edit technical notes in `app/lib/notes.ts`; detail routes export automatically.

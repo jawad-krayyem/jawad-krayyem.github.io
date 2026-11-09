@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: "try{var t=localStorage.getItem('jk-theme');document.documentElement.classList.toggle('dark',t!=='light')}catch(e){document.documentElement.classList.add('dark')}" }}/></head>
+      <head><script dangerouslySetInnerHTML={{ __html: "try{localStorage.removeItem('jk-theme')}catch(e){}" }}/></head>
       <body>
         <SiteLoader />
         {children}
